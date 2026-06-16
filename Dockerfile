@@ -4,7 +4,7 @@ WORKDIR /var/lib/ghost
 
 ENV NODE_ENV=production
 
-COPY package*.json ./
+COPY .npmrc package*.json ./
 COPY components ./components
 COPY script ./script
 
