@@ -303,7 +303,7 @@ class S3Storage extends ghost_storage_base_1.default {
                 message: (0, tpl_1.default)(messages.emptyRelativePath)
             });
         }
-        const pathWithStorage = node_path_1.default.posix.join(this.storagePath, relativePath);
+        const pathWithStorage = node_path_1.default.posix.join(this.storagePath, this.toCanonicalRelativePath(relativePath));
         if (!pathWithStorage.startsWith(this.storagePath + '/') && pathWithStorage !== this.storagePath) {
             throw new errors_1.default.IncorrectUsageError({
                 message: (0, tpl_1.default)(messages.invalidUrlParameter, { url: relativePath })
@@ -313,6 +313,38 @@ class S3Storage extends ghost_storage_base_1.default {
             return pathWithStorage;
         }
         return `${this.tenantPrefix}/${pathWithStorage}`;
+    }
+    toCanonicalRelativePath(input) {
+        return this.fromAbsoluteFilesystemPath(input)
+            ?? this.fromStoragePathPrefixed(input)
+            ?? this.fromLeadingSlashPath(input)
+            ?? input;
+    }
+    fromAbsoluteFilesystemPath(input) {
+        if (!node_path_1.default.posix.isAbsolute(input)) {
+            return null;
+        }
+        const marker = `/${this.storagePath}/`;
+        const idx = input.lastIndexOf(marker);
+        if (idx !== -1) {
+            return input.slice(idx + marker.length);
+        }
+        if (input.endsWith(`/${this.storagePath}`)) {
+            return '';
+        }
+        return null;
+    }
+    fromStoragePathPrefixed(input) {
+        if (input === this.storagePath || input.startsWith(`${this.storagePath}/`)) {
+            return node_path_1.default.posix.relative(this.storagePath, input);
+        }
+        return null;
+    }
+    fromLeadingSlashPath(input) {
+        if (!node_path_1.default.posix.isAbsolute(input)) {
+            return null;
+        }
+        return input.replace(/^\/+/, '');
     }
     isNotFound(error) {
         return error instanceof client_s3_1.NotFound || error instanceof client_s3_1.NoSuchKey;

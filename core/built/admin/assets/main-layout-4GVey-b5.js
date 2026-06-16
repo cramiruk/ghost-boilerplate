@@ -1,0 +1,1 @@
+import{e1 as e}from"./index-DUPCdQxG.js";const t=({children:a,...s})=>e.jsx("div",{className:"size-full",children:e.jsx("div",{className:"relative mx-auto flex h-full max-w-page flex-col",...s,children:a})});export{t as M};
