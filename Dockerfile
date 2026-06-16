@@ -8,7 +8,7 @@ COPY .npmrc package*.json ./
 COPY components ./components
 COPY script ./script
 
-RUN npm install --include=dev --no-audit --no-fund
+RUN npm ci --omit=dev --no-audit --no-fund
 
 COPY . .
 
