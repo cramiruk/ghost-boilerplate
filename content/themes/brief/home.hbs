@@ -1,0 +1,54 @@
+{{!< default}}
+
+{{!-- Hero --}}
+{{> sections/hero}}
+
+{{!-- Subscribe section based on /subscribe-section/ page --}}
+{{#match @custom.hero_subscribe_style "section"}}
+  {{> sections/subscribe}}
+{{/match}}
+
+{{#match @custom.hero_subscribe_style "inline+section"}}
+  {{> sections/subscribe}}
+{{/match}}
+
+{{!-- Logos based on /logos/ page --}}
+{{> sections/logos}}
+
+{{!-- Content section /content-section/ --}}
+{{> sections/content}}
+
+{{!-- Featured posts / inbox view --}}
+{{#if @custom.show_featured_issues}}
+  {{> sections/featured-posts}}
+{{/if}}
+
+{{!-- Reviews --}}
+{{> sections/reviews}}
+
+{{!-- Latest posts --}}
+{{#if @custom.show_latest_issues}}
+  {{#if @custom.show_featured_issues}}
+    {{> sections/latest-posts 
+      filter="featured:false"
+    }}
+  {{else}}
+    {{> sections/latest-posts}}
+  {{/if}}
+{{/if}}
+
+{{!-- Link to archive --}}
+{{#unless @custom.show_latest_issues}}
+  {{#if @custom.show_link_to_archive}}
+    <section class="px-5 sm:px-6 mb-24" data-archive-link>
+      <div class="max-w-container mx-auto">
+        <div class="flex justify-center">
+          <a href="/archive/" class="text-sm flex gap-1 border border-brd bg-bgr font-medium px-6 py-2 sm:py-2.5 sm:px-8 items-center justify-center rounded-btn group hover:bg-bgr-tone">
+            <span>{{t "View all issues"}}</span>
+            {{> icon name="chevron-right" icon_class="-mr-1.5 size-3.5 transition-transform group-hover:translate-x-0.5 stroke-[2.75]"}}
+          </a>
+        </div>
+      </div>
+    </section>  
+  {{/if}}
+{{/unless}}

@@ -1,0 +1,9 @@
+<button class="flex gap-0.5 p-0.5 border border-brd text-typ-tone rounded-btn hover:bg-bgr-tone" aria-label="{{t "Toggle color scheme"}}"
+  data-color-scheme-toggle @click="toggleColorScheme(event)">
+  <span data-theme="light" class="px-1.5 py-[3px] opacity-50 rounded-btn">
+    {{> icon name="sun" icon_class="size-4"}}
+  </span>
+  <span data-theme="dark" class="px-1.5 py-[3px] opacity-50 rounded-btn">
+    {{> icon name="moon" icon_class="size-4"}}
+  </span>
+</button>

@@ -1,0 +1,81 @@
+<section class="px-5 sm:px-6" data-post-hero="{{type}}">
+  <div class="max-w-container mx-auto pb-12 pt-8 flex items-center flex-col gap-6">
+
+    {{!-- Content --}}
+    <div class="text-typ-tone w-full flex-1 flex flex-col gap-4 mx-auto max-w-content" data-post-hero-content>
+      {{!-- Tag, date, reading time --}}
+      {{#is "post"}}
+        <div class="leading-none text-sm md:text-base gap-2 flex items-center flex-wrap font-medium mt-1.5" data-post-hero-info>      
+          {{!-- Date --}}
+          <time class="" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>  
+          
+          {{!-- {{t "1 min read"}} {{t "% min read"}} --}}
+          {{#if reading_time}}
+            <span class="before:content-['·'] before:mr-1" data-post-hero-reading-time>
+              {{reading_time minute=(t '1 min read') minutes=(t '% min read')}}
+            </span>
+          {{/if}}
+
+          {{!-- Tags --}}
+          {{#foreach tags limit="1"}}
+            <a href="{{url}}" class="before:content-['·'] before:mr-2 hover:text-brand" data-post-hero-tag>{{name}}</a>
+          {{/foreach}}
+        </div>
+      {{/is}}
+
+      {{!-- Title --}}
+      <h1 class="text-typ font-semibold tracking-tight text-2xl md:text-3xl md:font-medium lg:text-4xl{{^is "post"}} xl:text-5xl{{/is}}">
+        {{title}}
+      </h1>
+
+      {{!-- Excerpt --}}
+      {{#if custom_excerpt}}
+        <p class="text-base md:text-lg">{{custom_excerpt}}</p>
+      {{/if}}
+
+      {{!-- Authors --}}
+      {{#is "post"}}
+        <ul class="text-sm md:text-base flex gap-3 font-medium" data-post-hero-authors>
+          {{#foreach authors limit="10"}}
+            <li>
+              <a href="{{url}}" class="flex gap-1.5 items-center hover:text-brand">
+                {{#if profile_image}}
+                  {{> image
+                    image_type="author"
+                    image_alt=" "
+                    image_class="size-8 object-cover rounded-full"
+                    image_url=profile_image
+                    size_xxs=true
+                    size_xs=true
+                    sizes="32px"
+                  }}
+                {{/if}}
+                <span>{{name}}</span>
+              </a>
+            </li>
+          {{/foreach}}
+        </ul>
+      {{/is}}
+    </div>
+
+    {{!-- Feature image --}}
+    {{#if feature_image}}
+      <figure class="max-w-content-wide w-full h-full relative">
+        {{> image
+          image_type="post"
+          image_class="w-full object-cover rounded-theme aspect-16/9 bg-bgr-tone"
+          image_url=feature_image
+          size_s=true
+          size_m=true
+          size_l=true
+          size_xl=true
+          sizes="(max-width: 600px) 480px, 720px"
+          loading="eager"
+        }}
+        {{!-- Figcaption --}}
+        {{#if feature_image_caption}}<figcaption class="mt-2 opacity-80 text-center text-sm [&>a]:text-brand [&>a]:underline [&>a]:decoration-2 [&>a:hover]:text-brand">{{feature_image_caption}}</figcaption>{{/if}}
+      </figure>
+    {{/if}}
+
+  </div>
+</section>

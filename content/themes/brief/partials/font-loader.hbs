@@ -1,0 +1,10 @@
+{{#if font_headings}}
+  <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family={{font_headings}}:wght@{{#if weights}}{{weights}}{{else}}300;400;500;600;700;800{{/if}}&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+  <style>body { --font-headings: var(--gh-font-heading, '{{font_headings}}'), {{fallback}}; }</style>
+{{/if}}
+{{#if font_body}}
+  {{#match @custom.font_headings "!=" @custom.font_body}}
+    <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family={{font_body}}:wght@{{#if weights}}{{weights}}{{else}}300;400;500;600;700;800{{/if}}&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+  {{/match}}
+  <style>body { --font-body: var(--gh-font-body, '{{font_body}}'), {{fallback}}; }</style>
+{{/if}}

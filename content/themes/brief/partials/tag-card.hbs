@@ -1,0 +1,17 @@
+<li class="f" {{#if accent_color}}style="--color-accent:{{accent_color}}"{{/if}} data-tag-card>
+  <a href="{{url}}" class="relative h-full flex flex-col gap-2 rounded-theme bg-bgr-tone p-5 md:p-6 group">
+    <h2 class="text-sm md:text-base leading-none md:leading-none font-medium">{{name}}</h2>
+    {{#if description}}
+      <p class="text-xs md:text-sm flex-1 opacity-75 line-clamp-4">{{description}}</p>
+    {{else}}
+      <span class="flex-1"></span>
+    {{/if}}
+    <p class="mt-1 flex justify-between gap-2 items-center text-typ text-xs md:text-sm font-medium" data-tag-card-count>
+      {{!-- {{t "No issues"}} {{t "1 issues"}} {{t "% issues"}} --}}
+      <span class="leading-none">{{plural count.posts empty=(t 'No issues') singular=(t '1 issue') plural=(t '% issues')}}</span>
+      <span class="size-[18px] p-[3px] rounded-full bg-typ text-bgr opacity-0 group-hover:opacity-100 transition-opacity">
+        {{> icon name="arrow-right-up" icon_class="size-3" stroke_width="stroke-3"}}
+      </span>
+    </p>
+  </a>
+</li>

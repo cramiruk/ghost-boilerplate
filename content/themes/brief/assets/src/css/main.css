@@ -1,0 +1,113 @@
+/* Tailwind */
+@import 'tailwindcss';
+
+@config '../../../tailwind.config.js';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border, currentcolor);
+  }
+}
+
+/* Color & font definition */
+:root {
+  --font-system: system-ui, sans-serif;
+  --font-headings: var(--gh-font-heading, var(--font-system));
+  --font-body: var(--gh-font-heading, var(--font-system));
+  --font-mono: monospace;
+  --font-serif: serif;
+  --font-sans: sans-serif;
+
+  --container-width: 1080px;
+  --content-width: 680px; /*60ch;*/
+  --content-width-wide: 960px;
+  --wide-width: 1024px;
+  --radius: 8px;
+  --radius-xxs: calc(var(--radius) - 8px);
+  --radius-xs: calc(var(--radius) - 4px);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: calc(var(--radius) + 2px);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-btn: 30px;
+
+  --logo-h-mobile: 28px;
+  --logo-w-mobile: auto;
+  --logo-h-desktop: 32px;
+  --logo-w-desktop: auto;
+  
+  --color-brand: var(--ghost-accent-color,#FD3D00);
+  --color-brand-contrast: hsl(0 0% 100%);
+  --color-accent: var(--ghost-accent-color);
+  --color-error: #fc365e;
+  --color-success: #48c774;
+  --color-typography: hsl(0 0% 15%);
+  --color-typography-tone: hsl(0 0% 30%);
+  --color-typography-content: hsl(0 0% 25%);
+  --color-typography-reverse: hsl(0 0% 95%);
+  --color-background: hsl(45 20% 99%);
+  --color-background-tone: hsl(45 20% 97%);
+  --color-background-opac: hsla(0 0% 100% / 75%);
+  --color-background-reverse: hsl(0 0% 12%);
+  --color-border: hsl(45 20% 90%);
+  --color-border-reverse: hsl(0 0% 20%);
+  --shadow: 0 10px 40px -10px rgba(0 0 0 / .2);
+}
+
+
+@media (prefers-color-scheme: dark) {
+  [data-color-scheme="system"]:root {
+    --color-typography: hsl(0 0% 90%);
+    --color-typography-tone: hsl(0 0% 70%);
+    --color-typography-content: hsl(0 0% 70%);
+    --color-typography-reverse: hsl(0 0% 15%);
+    --color-background: hsl(0 0% 10%);
+    --color-background-tone: hsl(0 0% 13%);
+    --color-background-opac: hsla(0 0% 0% / 50%);
+    --color-background-reverse: hsl(0 0% 98%);
+    --color-border: hsl(0 0% 18%);
+    --color-border-reverse: hsl(0 0% 92%);
+    --shadow: 0 0px 3px 0px rgba(255 255 255 / .1);
+  }
+}
+
+[data-color-scheme="dark"]:root {
+  --color-typography: hsl(0 0% 90%);
+  --color-typography-tone: hsl(0 0% 70%);
+  --color-typography-content: hsl(0 0% 70%);
+  --color-typography-reverse: hsl(0 0% 15%);
+  --color-background: hsl(0 0% 10%);
+  --color-background-tone: hsl(0 0% 13%);
+  --color-background-opac: hsla(0 0% 0% / 50%);
+  --color-background-reverse: hsl(0 0% 98%);
+  --color-border: hsl(0 0% 18%);
+  --color-border-reverse: hsl(0 0% 92%);
+  --shadow: 0 0px 3px 0px rgba(255 255 255 / .1);
+}
+
+/* Font family definitions */
+body { font-family: var(--font-body); }
+article.ghost-content { font-family: var(--font-body); }
+h1,h2,h3,h4,h5,h6 { font-family: var(--font-headings); }
+
+/* No scrollbar */
+.no-scrollbar {
+  -ms-overflow-style: none; /* Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

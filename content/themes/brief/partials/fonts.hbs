@@ -1,0 +1,66 @@
+{{!-- Typography --}}
+{{#match @custom.font_headings "!=" "System"}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{{else match @custom.font_body "!=" "System"}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{{/match}}
+
+{{!-- Headings --}}
+{{#match @custom.font_headings "Bodoni Moda"}}
+  {{> font-loader font_headings=@custom.font_headings fallback="serif"}}
+{{/match}}
+{{#match @custom.font_headings "Bricolage Grotesque"}}
+  {{> font-loader font_headings=@custom.font_headings fallback="sans-serif"}}
+{{/match}}
+{{#match @custom.font_headings "DM Sans"}}
+  {{> font-loader font_headings=@custom.font_headings fallback="sans-serif"}}
+{{/match}}
+{{#match @custom.font_headings "Funnel Sans"}}
+  {{> font-loader font_headings=@custom.font_headings fallback="sans-serif"}}
+{{/match}}
+{{#match @custom.font_headings "Geist"}}
+  {{> font-loader font_headings=@custom.font_headings fallback="sans-serif"}}
+{{/match}}
+{{#match @custom.font_headings "Hanken Grotesk"}}
+  {{> font-loader font_headings=@custom.font_headings fallback="sans-serif"}}
+{{/match}}
+{{#match @custom.font_headings "Inter"}}
+  {{> font-loader font_headings=@custom.font_headings fallback="sans-serif"}}
+{{/match}}
+{{#match @custom.font_headings "PT Serif"}}
+  {{> font-loader font_headings=@custom.font_headings fallback="serif"}}
+{{/match}}
+{{#match @custom.font_headings "Spectral"}}
+  {{> font-loader font_headings=@custom.font_headings fallback="serif"}}
+{{/match}}
+
+{{!-- Body --}}
+{{#match @custom.font_body "Bodoni Moda"}}
+  {{> font-loader font_body=@custom.font_body fallback="serif"}}
+{{/match}}
+{{#match @custom.font_body "Bricolage Grotesque"}}
+  {{> font-loader font_body=@custom.font_body fallback="sans-serif"}}
+{{/match}}
+{{#match @custom.font_body "DM Sans"}}
+  {{> font-loader font_body=@custom.font_body fallback="sans-serif"}}
+{{/match}}
+{{#match @custom.font_body "Funnel Sans"}}
+  {{> font-loader font_body=@custom.font_body fallback="sans-serif"}}
+{{/match}}
+{{#match @custom.font_body "Geist"}}
+  {{> font-loader font_body=@custom.font_body fallback="sans-serif"}}
+{{/match}}
+{{#match @custom.font_body "Hanken Grotesk"}}
+  {{> font-loader font_body=@custom.font_body fallback="sans-serif"}}
+{{/match}}
+{{#match @custom.font_body "Inter"}}
+  {{> font-loader font_body=@custom.font_body fallback="sans-serif"}}
+{{/match}}
+{{#match @custom.font_body "PT Serif"}}
+  {{> font-loader font_body=@custom.font_body fallback="serif"}}
+{{/match}}
+{{#match @custom.font_body "Spectral"}}
+  {{> font-loader font_body=@custom.font_body fallback="serif"}}
+{{/match}}

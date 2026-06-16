@@ -1,0 +1,60 @@
+{{#get "pages" filter="slug:home-reviews" limit="1"}}
+  {{#foreach pages}}
+    {{#if html}}
+      <section class="px-5 sm:px-6 my-16 overflow-hidden" data-reviews x-init="$nextTick(() => { window.glide = new Glide(document.querySelector('.glide'), {
+          type: 'slider',
+          rewind: false,
+          // startAt: 0,
+          bound: true,
+          perView: 2.5,
+          gap: 32,
+          // peek: 100,
+          classes: {
+            activeSlide: 'is-active',
+          },
+          breakpoints: {
+            640: {
+              perView: 1
+            },
+            1024: {
+              perView: 1.5
+            },
+          }
+        }).mount() })"
+      >
+        <div class="max-w-container mx-auto">
+          <div class="flex justify-between items-center mb-3">
+            <h2 class="uppercase font-bold text-sm">{{title}}</h2>
+      
+            <div class="flex gap-2">
+              <button class="flex items-center justify-center gap-0.5 rounded-full size-8 group border border-brd bg-bgr text-typ hover:bg-bgr-tone cursor-pointer" @click="glide.go('<')">
+                {{> icon name="chevron-left" icon_class="size-[18px] stroke-[2.5]"}}
+                <span class="sr-only">{{t "Previous"}}</span>
+              </button>
+              <button class="flex items-center justify-center gap-0.5 rounded-full size-8 group border border-brd bg-bgr text-typ hover:bg-bgr-tone cursor-pointer" @click="glide.go('>')">
+                <span class="sr-only">{{t "Next"}}</span>
+                {{> icon name="chevron-right" icon_class="size-[18px] stroke-[2.5]"}}
+              </button>
+            </div>
+          </div>
+          
+          <div class="[&_.product-card]:text-typ! [&_.kg-product-card-container]:text-typ!
+            [&_.kg-product-card-container]:shadow-none! [&_.kg-product-card-container]:p-8! [&_.kg-product-card-container]:flex! [&_.kg-product-card-container]:flex-wrap! [&_.kg-product-card-container]:gap-3! [&_.kg-product-card-container]:bg-bgr-tone! [&_.kg-product-card-container]:rounded-theme-sm! 
+            [&_.kg-product-card-rating]:self-center! [&_img]:rounded-full! [&_img]:size-10! [&_img]:object-cover! [&_.kg-product-card-description]:-order-1! [&_.kg-product-card-description]:mb-4!
+            [&_.kg-product-card-description_p]:font-body [&_.kg-product-card-description_p]:font-normal!
+            [&_.kg-product-card_.kg-product-card-description_p]:text-lg! [&_.kg-product-card_.kg-product-card-description_p]:opacity-80
+            [&_.kg-product-card-title]:text-base! [&_.kg-product-card-title]:leading-none! [&_.kg-product-card-title]:font-headings! [&_.kg-product-card-title]:font-bold!  [&_.kg-product-card-title-container]:flex-1!
+            [&_.kg-product-card-rating-star]:flex! [&_.kg-product-card-rating-star]:items-center! [&_.kg-product-card-rating_svg]:fill-[gold]!">
+            <div class="glide">
+              <div data-glide-el="track" class="glide">
+                <div class="glide__slides items-start" data-reviews-feed>
+                  {{content}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {{/if}}
+  {{/foreach}}
+{{/get}}

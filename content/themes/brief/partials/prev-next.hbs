@@ -1,0 +1,20 @@
+<section class="px-5 sm:px-6 mb-12" data-prev-next>
+  <div class="max-w-container mx-auto">
+    <h2 class="uppercase font-semibold text-sm mb-2 sr-only">{{t "Read next"}}</h2>
+    <div class="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+      {{#prev_post}}
+        <a class="group flex gap-3 bg-bgr-tone rounded-theme p-5 sm:p-6" href="{{url}}">
+          <div class="rounded-full flex items-center justify-center size-7 bg-bgr border border-brd group-hover:bg-bgr-tone">{{> icon name="chevron-left" icon_class="size-4"}}</div>
+          <h3 class="flex-1 font-semibold leading-tight text-sm sm:text-base sm:font-medium sm:leading-tight">{{title}}</h3>
+        </a>
+      {{/prev_post}}
+
+      {{#next_post}}
+        <a class="group flex gap-3 md:gap-4 bg-bgr-tone rounded-theme p-5 sm:p-6" href="{{url}}">
+          <h3 class="text-right flex-1 font-semibold leading-tight text-sm sm:text-base sm:font-medium sm:leading-tight">{{title}}</h3>
+          <div class="rounded-full flex items-center justify-center size-7 bg-bgr border border-brd group-hover:bg-bgr-tone">{{> icon name="chevron-right" icon_class="size-4"}}</div>
+        </a>
+      {{/next_post}}
+    </div>
+  </div>
+</section>

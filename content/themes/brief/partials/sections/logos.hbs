@@ -1,0 +1,14 @@
+{{!-- Logos: based on the /featured-in/ page --}}
+{{#get "pages" filter="slug:home-logos" limit="1"}}
+  {{#foreach pages}}
+    <section class="px-5 sm:px-6 mt-8 mb-24" data-logos>
+      <div class="max-w-container mx-auto">
+        <h2 class="uppercase text-sm text-center opacity-75 mb-4 font-semibold">{{title}}</h2>
+        <div class="flex flex-wrap gap-6 md:gap-8 items-center justify-center [&_figure]:m-0! [&_img]:h-8 [&_img]:w-auto" 
+          data-logo-list>
+          {{content}}
+        </div>
+      </div>
+    </section>
+  {{/foreach}}
+{{/get}}

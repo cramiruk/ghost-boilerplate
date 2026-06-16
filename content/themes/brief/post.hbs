@@ -1,0 +1,49 @@
+{{!< default}}
+
+{{#post}}
+  {{!-- Web format --}}
+  {{#match @custom.default_post_template "web-format"}}
+    {{!-- Post hero --}}
+    {{> post-hero }}
+
+    {{!-- Content --}}
+    <article class="ghost-content prose md:prose-lg prose-theme"{{#unless access}} data-preview{{/unless}}>
+      {{content}}
+    </article>
+
+    {{!-- Share --}}
+    {{> social-share
+      item_class="border border-brd bg-bgr leading-tight py-1.5 px-2.5 flex-1 flex gap-1.5 items-center justify-center rounded-btn hover:bg-bgr-tone"
+      item_text_class="leading-none"
+    }}
+  {{/match}}
+
+  {{!-- Email format --}}
+  {{#match @custom.default_post_template "email-format"}}
+    <section class="max-w-container mx-auto md:bg-bgr-tone md:rounded-theme md:py-8 lg:py-12 mb-12">
+      <div class="max-w-content mx-auto bg-bgr rounded-theme [&>section>div]:pt-6">
+        {{!-- Hero --}}
+        {{> post-hero
+          type="narrow"
+        }}
+
+        {{!-- Content --}}
+        <article class="ghost-content prose md:prose-lg prose-theme"{{#unless access}} data-preview{{/unless}} data-no-overflow>
+          {{content}}
+        </article>
+
+        {{!-- Share --}}
+        {{> social-share
+          item_class="border border-brd bg-bgr leading-tight py-1.5 px-2.5 flex-1 flex gap-1.5 items-center justify-center rounded-btn hover:bg-bgr-tone"
+          item_text_class="leading-none"
+        }}
+      </div>
+    </section>
+  {{/match}}
+
+  {{!-- Prev/next --}}
+  {{> prev-next}}
+
+  {{!-- Comments --}}
+  {{> comments}}
+{{/post}}

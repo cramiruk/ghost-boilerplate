@@ -1,0 +1,28 @@
+{{#get "posts" filter="{{filter}}" include="tags,authors,tiers" limit=@config.posts_per_page}}
+  {{#if posts}}
+    <section class="px-5 sm:px-6 mb-16 overflow-hidden lg:overflow-visible" data-latest-posts id="latest">
+      <div class="max-w-container mx-auto">
+        <div class="flex flex-col lg:flex-row gap-8">
+          <div class="flex-1 overflow-x-scroll">
+            {{> topic-list}}
+
+            <h2 class="uppercase font-semibold text-sm mb-2" data-feed-header>{{t "Latest issues"}}</h2>
+
+            {{> post-feed}}
+
+            {{#if @custom.show_link_to_archive}}
+              <div class="flex justify-center my-12">
+                <a href="/archive/" class="text-sm flex gap-1 border border-brd bg-bgr font-medium px-6 py-2 sm:py-2.5 sm:px-8 items-center justify-center rounded-btn group hover:bg-bgr-tone">
+                  <span>{{t "View all issues"}}</span>
+                  {{> icon name="chevron-right" icon_class="-mr-1.5 size-3.5 transition-transform group-hover:translate-x-0.5 stroke-[2.75]"}}
+                </a>
+              </div>
+            {{/if}}
+          </div>
+
+          {{> sidebar}}
+        </div>
+      </div>
+    </section>
+  {{/if}}
+{{/get}}

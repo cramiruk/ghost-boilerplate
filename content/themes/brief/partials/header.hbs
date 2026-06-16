@@ -1,0 +1,77 @@
+<header class="px-5 sm:px-6 bg-bgr text-typ whitespace-nowrap text-sm{{#is "home"}}{{#unless @custom.show_header_and_footer}} hidden{{/unless}}{{/is}}" data-header>
+  <div class="max-w-container mx-auto py-4 md:py-6 flex items-center justify-center gap-2 relative">
+
+    {{!-- Brand --}}
+    <div class="flex-1 flex justify-start" data-header-brand>
+      <a class="" href="{{@site.url}}" data-brand>
+        {{> logo loading="eager"}}
+      </a>
+    </div>
+
+    {{!-- Navigation --}}
+    <nav class="relative hidden md:flex justify-center" data-nav="header">
+      {{navigation 
+        ul_class="flex gap-0.5"
+        li_class="flex items-center relative hover:bg-bgr-tone rounded-btn"
+        a_class="w-full flex px-4 py-2 rounded-btn"
+      }}
+    </nav>
+
+    {{!-- Actions --}}
+    <div class="flex gap-1 md:gap-2 items-center" data-header-actions>
+      {{!-- Color scheme toggle --}}
+      {{#match @custom.color_scheme_toggle_position "header"}}
+        {{> toggle-color-scheme}}
+      {{/match}}
+      {{#match @custom.color_scheme_toggle_position "header & footer"}}
+        {{> toggle-color-scheme}}
+      {{/match}}
+
+      {{!-- Search button --}}
+      <button class="flex items-center justify-center rounded-full size-8 md:size-9 hover:bg-bgr-tone cursor-pointer" data-ghost-search title="{{t "Search"}}" aria-label="{{t "Search"}}">
+        {{> icon name="search" icon_class="w-5 h-5 stroke-2 fill-bgr-tone [&>svg]:fill-inherit"}}
+      </button>
+
+      {{!-- Member/User button --}}
+      {{#if @member}}
+        <button class="ml-1 relative size-8 md:size-9 hover:text-brand cursor-pointer" data-portal="account" aria-label="{{@member.name}}">
+          {{#if @member.avatar_image}}
+            <img class="border border-opac shadow-sm relative size-8 md:size-9 rounded-full z-2" 
+              src="{{@member.avatar_image}}"
+              alt="{{@member.name}}">
+          {{/if}}
+          {{>icon name="user" icon_class="absolute z-1 size-7 stroke-[1.5] inset-0.5 md:inset-1"}}
+        </button>
+      {{/if}}
+
+      {{!-- Menu button --}}
+      <button class="flex flex-col items-center gap-1 size-8 p-1 md:p-2 md:size-9 justify-center rounded-full group md:hidden transition-transform hover:bg-bgr-tone" 
+        data-menu-toggle aria-label="{{t "Menu toggle"}}" aria-expanded="false" aria-haspopup="true" aria-controls="menu"
+        @click="menuOpen = !menuOpen" :aria-expanded="menuOpen.toString()"
+      >
+        <span class="relative pointer-events-none h-0.5 rounded-xs bg-typ-tone w-4 transition-transform"
+              :class="menuOpen ? 'rotate-45 translate-y-[3px]' : ''"></span>
+        <span class="relative pointer-events-none h-0.5 rounded-xs bg-typ-tone w-4 transition-transform"
+              :class="menuOpen ? '-rotate-45 -translate-y-[3px]' : ''"></span>
+      </button>
+
+      {{!-- Subscribe --}}
+      {{#if @custom.header_cta_url}}
+        <a href="{{@custom.header_cta_url}}" data-header-cta
+          class="hidden sm:flex items-center gap-1 bg-brand font-medium text-brand-contrast px-4 py-1.5 rounded-btn md:px-5 md:py-2 transition hover:ring-[3px] hover:ring-brand/20">
+          <span>{{@custom.header_cta_text}}</span>
+        </a>
+      {{else}}
+        {{#if @site.members_enabled}}
+          {{#unless @member}}
+            <a href="/subscribe/" data-portal="subscribe" data-header-subscribe
+              class="hidden sm:flex items-center gap-1 bg-brand font-medium text-brand-contrast px-4 py-1.5 rounded-btn md:px-5 md:py-2 transition hover:ring-[3px] hover:ring-brand/20">
+              <span>{{t "Subscribe"}}</span>
+            </a>
+          {{/unless}}
+        {{/if}}
+      {{/if}}
+    </div>
+
+  </div>
+</header>

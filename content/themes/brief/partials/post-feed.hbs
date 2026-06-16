@@ -1,0 +1,9 @@
+<div class="border-y border-brd sm:border-none sm:rounded-theme sm:bg-bgr-tone flex flex-col" data-post-feed>
+  {{#foreach posts}}
+    {{#match @custom.post_feed_style "detailed"}}
+      {{> post-card }}
+    {{else}}
+      {{> post-card-minimal }}
+    {{/match}}
+  {{/foreach}}
+</div>

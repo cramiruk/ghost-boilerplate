@@ -1,0 +1,19 @@
+{{#get "pages" filter="slug:topic-list" include="tags" limit="1"}}
+  {{#foreach pages}}
+     <nav class="[&+h2]:hidden [&+[data-feed-heading]]:hidden relative after:absolute after:top-0 after:right-0 after:w-8 after:h-full after:bg-linear-to-l after:from-bgr after:to-transparent after:z-10" 
+      data-topic-list x-init="$nextTick(() => { highlightActiveTag() })">
+      <ul role="list" class="text-sm uppercase text-typ font-semibold flex gap-4 overflow-x-scroll no-scrollbar">
+        <li>
+          <a href="{{@site.url}}#latest" class="relative block text-nowrap pb-2 hover:text-typ-tone border-b-2{{#is "home"}} border-typ{{else}} border-transparent {{/is}}">{{t "All issues"}}</a>
+        </li>
+        {{#foreach tags}}
+          <li class="{{#if @last}}mr-8{{/if}}">
+            <a href="{{url}}" class="relative block text-nowrap pb-2 hover:text-typ-tone border-b-2 border-transparent">
+              {{name}}
+            </a>
+          </li>
+        {{/foreach}}
+      </ul>
+    </nav>
+  {{/foreach}}
+{{/get}}

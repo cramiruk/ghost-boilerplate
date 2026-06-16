@@ -1,0 +1,21 @@
+<aside class="flex-1 lg:max-w-80">
+  {{#if @custom.show_recommendations}}
+    {{recommendations limit="3"}}
+  {{/if}}
+
+  {{#unless @member}}
+    <h2 class="uppercase font-semibold text-sm mb-2">{{@site.title}}</h2>
+
+    <div class="sticky top-6 p-4 md:p-6 bg-bgr-tone rounded-theme">
+      <p class="leading-snug mb-4 text-typ-tone">{{@site.description}}</p>
+
+      {{> subscribe-form 
+        form_class="w-full max-w-sm text-sm"
+        fieldset_class="w-full flex flex-col gap-3"
+        input_class="bg-bgr border border-brd text-typ text-sm px-5 py-2.5 rounded-btn focus:border-brand focus:ring-4 focus:ring-brand/20"
+        button_class="flex-1 px-4 py-2.5 bg-brand text-brand-contrast font-medium rounded-btn md:px-6 hover:ring-[3px] hover:ring-brand/20"
+        show_signup_terms=false
+      }}
+    </div>
+  {{/unless}}
+</aside>

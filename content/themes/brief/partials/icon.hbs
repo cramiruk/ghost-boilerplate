@@ -1,0 +1,4 @@
+{{!-- Icon partial to include icons easily --}}
+<i class="icon [&_svg]:h-[inherit] [&_svg]:w-[inherit] [&_svg]:[stroke-width:inherit] icon-{{name}}{{#if icon_class}} {{icon_class}}{{else}} size-5{{/if}}{{#if stroke_width}} {{stroke_width}}{{else}} stroke-2{{/if}}" role="presentation">
+  {{#> (concat 'icons/' name)}}{{/undefined}}
+</i>

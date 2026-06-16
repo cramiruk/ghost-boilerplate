@@ -1,0 +1,82 @@
+<ul class="flex flex-wrap gap-1 text-typ-tone [&>li:not(:last-of-type)]:after:content-['/'] [&>li]:after:leading-none [&>li]:after:opacity-25 [&>li]:after:mx-2 {{ul_class}}">
+  {{#if twitter}}
+    <li class="flex items-center {{li_class}}">
+      <a class="text-xs sm:text-sm font-medium flex items-center gap-1 self-start hover:text-typ {{a_class}}" href="{{social_url type="twitter"}}">
+        <span class="p-1 rounded-full bg-bgr-reverse text-typ-reverse">{{> icon name="brand-x" icon_class="size-3 stroke-[2.5]"}}</span>
+        <span>{{twitter}}</span>
+      </a>
+    </li>
+  {{/if}}
+  {{#if facebook}}
+    <li class="flex items-center">
+      <a class="text-xs sm:text-sm font-medium flex items-center gap-1 self-start hover:text-typ" href="{{social_url type="facebook"}}">
+        <span class="p-1 rounded-full bg-bgr-reverse text-typ-reverse">{{> icon name="brand-facebook" icon_class="size-3 stroke-[2.5]"}}</span>
+        <span>{{facebook}}</span>
+      </a>
+    </li>
+  {{/if}}
+  {{#if linkedin}}
+    <li class="flex items-center">
+      <a class="text-xs sm:text-sm font-medium flex items-center gap-1 self-start hover:text-typ" href="{{social_url type="linkedin"}}">
+        <span class="p-1 rounded-full bg-bgr-reverse text-typ-reverse">{{> icon name="brand-linkedin" icon_class="size-3 stroke-[2.5]"}}</span>
+        <span>{{linkedin}}</span>
+      </a>
+    </li>
+  {{/if}}
+  {{#if bluesky}}
+    <li class="flex items-center">
+      <a class="text-xs sm:text-sm font-medium flex items-center gap-1 self-start hover:text-typ" href="{{social_url type="bluesky"}}">
+        <span class="p-1 rounded-full bg-bgr-reverse text-typ-reverse">{{> icon name="brand-bluesky" icon_class="size-3 stroke-[2.5]"}}</span>
+        <span>{{bluesky}}</span>
+      </a>
+    </li>
+  {{/if}}
+  {{#if threads}}
+    <li class="flex items-center">
+      <a class="text-xs sm:text-sm font-medium flex items-center gap-1 self-start hover:text-typ" href="{{social_url type="threads"}}">
+        <span class="p-1 rounded-full bg-bgr-reverse text-typ-reverse">{{> icon name="brand-threads" icon_class="size-3 stroke-[2.5]"}}</span>
+        <span>{{threads}}</span>
+      </a>
+    </li>
+  {{/if}}
+  {{#if mastodon}}
+    <li class="flex items-center">
+      <a class="text-xs sm:text-sm font-medium flex items-center gap-1 self-start hover:text-typ" href="{{social_url type="mastodon"}}">
+        <span class="p-1 rounded-full bg-bgr-reverse text-typ-reverse">{{> icon name="brand-mastodon" icon_class="size-3 stroke-[2.5]"}}</span>
+        <span>{{mastodon}}</span>
+      </a>
+    </li>
+  {{/if}}
+  {{#if tiktok}}
+    <li class="flex items-center">
+      <a class="text-xs sm:text-sm font-medium flex items-center gap-1 self-start hover:text-typ" href="{{social_url type="tiktok"}}">
+        <span class="p-1 rounded-full bg-bgr-reverse text-typ-reverse">{{> icon name="brand-tiktok" icon_class="size-3 stroke-[2.5]"}}</span>
+        <span>{{tiktok}}</span>
+      </a>
+    </li>
+  {{/if}}
+  {{#if youtube}}
+    <li class="flex items-center">
+      <a class="text-xs sm:text-sm font-medium flex items-center gap-1 self-start hover:text-typ" href="{{social_url type="youtube"}}">
+        <span class="p-1 rounded-full bg-bgr-reverse text-typ-reverse">{{> icon name="brand-youtube" icon_class="size-3 stroke-[2.5]"}}</span>
+        <span>{{youtube}}</span>
+      </a>
+    </li>
+  {{/if}}
+  {{#if instagram}}
+    <li class="flex items-center">
+      <a class="text-xs sm:text-sm font-medium flex items-center gap-1 self-start hover:text-typ" href="{{social_url type="instagram"}}">
+        <span class="p-1 rounded-full bg-bgr-reverse text-typ-reverse">{{> icon name="brand-instagram" icon_class="size-3 stroke-[2.5]"}}</span>
+        <span>{{instagram}}</span>
+      </a>
+    </li>
+  {{/if}}
+  {{#if website}}
+    <li class="flex items-center">
+      <a class="text-xs sm:text-sm font-medium flex items-center gap-1 self-start hover:text-typ" href="{{website}}">
+        <span class="p-1 rounded-full bg-bgr-reverse text-typ-reverse">{{> icon name="link" icon_class="size-3 stroke-[2.5]"}}</span>
+        <span>{{readable_url website}}</span>
+      </a>
+    </li>
+  {{/if}}
+</ul>

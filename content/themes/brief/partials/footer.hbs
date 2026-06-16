@@ -1,0 +1,67 @@
+<footer class="px-5 sm:px-6 bg-bgr-tone mt-16 sm:bg-bgr {{#is "home"}}{{#unless @custom.show_header_and_footer}} hidden{{/unless}}{{/is}}" data-footer>
+  <div class="max-w-container mx-auto">
+    <div class="relative overflow-hidden flex flex-col items-center gap-6 bg-bgr-tone rounded-theme py-12 sm:px-8" data-footer-top>
+      {{!-- Content --}}
+      <div class="flex flex-col items-center text-center gap-3 max-w-md" data-footer-brand>
+        <a href="{{@site.url}}" data-brand>
+          {{> logo loading="lazy"}}
+        </a>
+
+        {{!-- Description --}}
+        <p id="footer-label" class="text-typ-tone mb-2">{{@site.description}}</p>
+
+        {{!-- Subscribe form --}}
+        {{#unless @member}}
+          {{> subscribe-form 
+            form_class="w-full max-w-sm"
+            fieldset_class="w-full bg-bgr border border-brd flex flex-wrap rounded-btn bg-bgr p-[5px] focus-within:border-brand focus-within:ring-4 focus-within:ring-brand/20 text-sm"
+            input_class="text-sm bg-bgr text-typ flex-2 py-2 rounded-btn border-none focus:ring-0"
+            button_class="flex-1 px-4 py-2 bg-brand text-brand-contrast font-medium rounded-btn md:px-6 hover:ring-[3px] hover:ring-brand/20"
+            show_signup_terms=false
+          }}
+        {{/unless}}
+      </div>
+
+      <hr class="border-none h-[1px] w-full max-w-xs my-2 bg-linear-to-r from-transparent via-brd to-transparent"/>
+
+      {{#if @site.secondary_navigation}}
+        <nav class="" data-footer-nav="secondary">
+          {{navigation 
+            type="secondary"
+            ul_class="relative flex flex-wrap items-center justify-center gap-3 text-typ text-sm z-10"
+            li_class="flex flex-row relative"
+            a_class="flex hover:text-typ-tone"
+          }}
+        </nav>
+      {{/if}}
+
+      {{!-- Socials --}}
+      {{> social-links 
+        data_value="footer"
+        nav_class="relative flex flex-wrap items-center gap-3 text-typ-tone text-sm z-10"
+        item_class="hover:text-typ"
+        icon_class="size-4 stroke-2"
+        text_class="hidden"
+      }}
+
+      {{!-- Site title in bg --}}
+      <span data-footer-bg class="absolute -bottom-[0.14em] -left-[0.075em] text-center hidden font-semibold sm:block text-[clamp(5rem,4rem+5vw,8rem)] leading-none bg-linear-to-t from-brd to-bgr-tone text-transparent bg-clip-text z-0 opacity-75 whitespace-nowrap">{{@site.title}}</span>
+    </div>
+
+    {{!-- Copy & Color scheme --}}
+    <div class="py-4 md:py-6 flex flex-wrap justify-center items-center text-center gap-2 relative border-t border-brd sm:border-none" data-footer-bottom>
+      <div class="text-sm text-typ-tone">
+        <span data-footer-date>&copy;{{date format="YYYY"}}&nbsp;{{#link href=@site.url class="hover:text-typ"}}{{@site.title}}{{/link}}.</span>
+        <span data-footer-ghost>{{t "Published with"}}&nbsp;{{#link href="https://ghost.org" class="hover:text-typ"}}Ghost{{/link}}</span>
+        <span data-footer-theme>&&nbsp;{{#link href="https://brightthemes.com/themes/brief" class="hover:text-typ"}}Brief{{/link}}.</span>
+      </div>
+
+      {{#match @custom.color_scheme_toggle_position "footer"}}
+        {{> toggle-color-scheme}}
+      {{/match}}
+      {{#match @custom.color_scheme_toggle_position "header & footer"}}
+        {{> toggle-color-scheme}}
+      {{/match}}
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,33 @@
+{{!< default}}
+
+{{#page}}
+  {{> page-hero}}
+{{/page}}
+
+<section class="px-5 sm:px-6{{#page}} mt-4 mb-16{{else}} my-16{{/page}}" data-author-posts>
+  <div class="max-w-3xl mx-auto">    
+    {{!-- Subheading & navigation --}}
+    <div class="flex gap-2 items-center justify-between mb-3">
+      <h2 class="uppercase font-semibold text-sm">{{t "Page {current_page} of {total_pages}" current_page=pagination.page total_pages=pagination.pages}}</h2>
+
+      {{#match pagination.pages ">" 1}}
+        <nav class="flex gap-2">
+          <a data-prev class="flex items-center justify-center gap-0.5 rounded-full size-7 group border border-brd bg-bgr {{#if pagination.prev}} text-typ hover:bg-bgr-tone{{else}} cursor-not-allowed disabled{{/if}}" 
+            href="{{#if pagination.prev}}{{page_url pagination.prev}}{{else}}javascript:{{/if}}">
+            {{> icon name="chevron-left" icon_class="size-4 stroke-[2.5] -ml-0.5"}}
+          </a>
+          <a data-next class="flex items-center justify-center gap-0.5 rounded-full size-7 group border border-brd bg-bgr {{#if pagination.next}} text-typ hover:bg-bgr-tone{{else}} cursor-not-allowed disabled{{/if}}" 
+            href="{{#if pagination.next}}{{page_url pagination.next}}{{else}}javascript:{{/if}}">
+            {{> icon name="chevron-right" icon_class="size-4 stroke-[2.5] -mr-0.5"}}
+          </a>
+        </nav>
+      {{/match}}
+    </div>
+
+    {{!-- Episodes feed --}}
+    {{> post-feed}}
+
+    {{!-- Pagination --}}
+    {{> pagination}}
+  </div>
+</section>

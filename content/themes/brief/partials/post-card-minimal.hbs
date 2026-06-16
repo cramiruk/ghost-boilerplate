@@ -1,0 +1,46 @@
+<article class="{{post_class}} {{card_class}} relative {{#unless @last}} after:absolute after:content-[''] after:bg-brd after:bottom-0 after:left-0 after:w-full sm:after:left-6 after:h-[1px] sm:after:w-[calc(100%-3rem)]{{/unless}}" data-post-card{{#if featured}} data-featured{{/if}}>
+  <a href="{{url}}" class="group relative flex items-center gap-5 py-5 sm:gap-6 sm:p-6 text-typ-tone hover:bg-linear-to-r hover:from-bgr-tone hover:via-bgr hover:to-bgr-tone">
+    <div class="flex flex-col justify-center gap-2.5" data-post-card-content>
+      {{!-- Title --}}
+      <h3 class="text-typ text-base leading-tight font-semibold {{title_class}}" data-post-card-title>
+        <span class="group-hover:bg-[size:100%_2px] bg-[linear-gradient(currentColor,currentColor)] bg-[size:0%_2px] bg-[0%_100%] bg-no-repeat no-underline transition-all">
+          {{title}}
+        </span>
+      </h3>
+
+      {{!-- Post info --}}
+      <div class="leading-none text-sm gap-2 sm:leading-none flex items-center flex-wrap font-medium" data-post-card-info>      
+        {{!-- Date --}}
+        <time class="" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>  
+        
+        {{!-- {{t "1 min read"}} {{t "% min read"}} --}}
+        {{#if reading_time}}
+          <span class="before:content-['·'] before:mr-1" data-post-card-reading-time>
+            {{reading_time minute=(t '1 min read') minutes=(t '% min read')}}
+          </span>
+        {{/if}}
+
+        {{!-- Visibility --}}
+        {{#unless access}}
+          <span class="text-xs relative flex gap-0.5 items-center before:content-['·'] before:mr-1 z-20" data-post-card-visibility>
+            {{> icon name="lock" icon_class="peer/access size-4 stroke-[2.5] -mt-[1px]"}}
+            <span class="-z-1 capitalize absolute left-3 -top-[5px] bg-bgr-reverse text-typ-reverse whitespace-nowrap px-3 py-1 rounded-btn transition-all opacity-0 invisible peer-hover/access:opacity-100 peer-hover/access:visible peer-hover/access:left-8 before:absolute before:-left-1 before:top-1 before:w-0 before:h-0 before:content-[''] before:border-t-[8px] before:border-t-transparent before:border-r-[8px] before:border-r-bgr-reverse before:border-b-[8px] before:border-b-transparent">
+              {{#has visibility="tiers"}}{{tiers}}{{else}}{{visibility}}{{/has}}
+            </span>
+          </span>
+        {{/unless}}
+
+        {{!-- Featured --}}
+        {{#if featured}}
+          <span class="text-xs relative flex gap-0.5 items-center before:content-['·'] before:mr-1 z-10" data-post-card-featured>
+            {{> icon name="bolt" icon_class="peer/featured text-brand [&_svg]:fill-brand peer size-4 stroke-[2.5] -mt-[1px]"}}
+            <span class="-z-1 capitalize absolute left-3 -top-[5px] bg-bgr-reverse text-typ-reverse whitespace-nowrap px-3 py-1 rounded-btn transition-all opacity-0 invisible peer-hover/featured:opacity-100 peer-hover/featured:visible peer-hover/featured:left-8 before:absolute before:-left-1 before:top-1 before:w-0 before:h-0 before:content-[''] before:border-t-[8px] before:border-t-transparent before:border-r-[8px] before:border-r-bgr-reverse before:border-b-[8px] before:border-b-transparent">
+              {{t "Featured"}}
+            </span>
+            
+          </span>
+        {{/if}}
+      </div>
+    </div>
+  </a>
+</article>

@@ -1,0 +1,102 @@
+{{!< default}}
+
+{{!-- Hero --}}
+{{#page}}
+  {{> page-hero}}
+{{/page}}
+
+{{!-- Newsletters --}}
+{{#get "newsletters" limit="30" as |newsletters|}}
+  {{#if newsletters}}
+    <section class="px-5 sm:px-6" data-newsletters
+      x-data="{ 
+        member: {{#if @member}}true{{else}}false{{/if}},
+        newsletters: [{{#foreach newsletters}} { id: '{{id}}', active: false }{{#unless @last}},{{/unless}}{{/foreach}}],
+        totalNewsletters: {{newsletters.length}},
+        memberNewsletters: [],
+        toggleMemberNewsletter(newsletterId) {
+          const newsletter = this.memberNewsletters.find(n => n.id === newsletterId);
+          if (newsletter) {
+            this.newsletters.find(n => n.id === newsletterId).active = false;
+            this.memberNewsletters = this.memberNewsletters.filter(n => n.id !== newsletterId);
+          } else {
+            this.memberNewsletters = [...this.memberNewsletters, { id: newsletterId }];
+            this.newsletters.find(n => n.id === newsletterId).active = true;
+          }
+        }
+      }"  
+      x-init="$nextTick(async () => { 
+        if (member) {
+          memberNewsletters = await getMemberNewsletters()
+          newsletters = newsletters.map(newsletter => ({
+            ...newsletter,
+            active: memberNewsletters.some(mn => mn.id === newsletter.id)
+          }))
+        }
+      })">
+
+      {{!-- Subscribe/unsubscribe --}}
+      <div class="max-w-container mx-auto flex flex-col gap-2 items-center">
+        {{#if @member}}
+          <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3" 
+    style="--accent-text: var(--color-typography); --accent-bg: var(--color-background-tone);">
+            {{#foreach newsletters}}
+              <article class="flex flex-col items-start gap-3 bg-(--accent-bg) text-(--accent-text) rounded-theme p-5 sm:p-6 relative cursor-pointer border" :class="checked ? 'border-typ' : 'border-transparent'" data-newsletter-id="{{id}}" data-newsletter-slug="{{slug}}" data-newsletter-index="{{@number}}" :data-checked="checked" x-data="{ id: '{{id}}', checked: false }" x-effect="checked = newsletters.some(n => n.id === id && n.active)" @click="toggleMemberNewsletter(id); updateMemberNewsletters(memberNewsletters);">
+
+                {{!-- Symbol --}}
+                <figure role="presentation" class="hidden text-3xl before:content-(--symbol-newsletter)" data-newsletter-symbol></figure>
+
+                {{!-- Name --}}
+                <h2 class="text-lg leading-tight md:text-xl md:leading-tight font-semibold md:font-medium">{{name}}</h2>
+
+                {{!-- Description --}}
+                <p class="flex-1 text-sm text-typ-tone leading-snug md:text-base md:leading-snug max-w-md">{{description}}</p>
+                
+                {{!-- 'Checkbox' --}} 
+                <span id="{{id}}" class="absolute top-6 right-6 rounded-full cursor-pointer size-6 flex items-center justify-center border border-typ focus:outline-none focus:ring-0 data-checked:bg-typ" :data-checked="checked" :class="checked ? 'bg-typ text-bgr' : 'bg-bgr text-typ'">
+                  <span :class="checked ? 'hidden' : 'block'">
+                    {{> icon name="plus" icon_class="size-3.5 stroke-[3.5]"}}
+                  </span>
+                  <span :class="checked ? 'block' : 'hidden'">
+                    {{> icon name="check" icon_class="size-3.5 stroke-[3.5]"}}
+                  </span>
+                </span>
+              </article>
+            {{/foreach}}
+          </div>
+          <button 
+            @click="memberNewsletters = []; updateMemberNewsletters(memberNewsletters); newsletters.forEach(n => n.active = false)" 
+            class="cursor-pointer text-sm font-medium bg-rose-500 text-white px-6 py-2 rounded-btn font-sans hover:brightness-110 mt-8">
+            <span>{{t "Unsubscribe"}}</span>
+          </button>
+        {{else}}
+          {{> subscribe-form 
+            include_newsletters=true
+            form_class="w-full font-sans"
+            fieldset_class="w-full bg-bgr border border-brd flex flex-wrap rounded-btn bg-bgr p-[5px] focus-within:border-brand focus-within:ring-4 focus-within:ring-brand/20 text-sm max-w-md mt-8 mx-auto"
+            input_class="text-sm bg-bgr text-typ flex-2 py-2 rounded-btn border-none focus:ring-0"
+            button_class="flex-1 px-4 py-2 bg-brand text-brand-contrast font-medium rounded-btn md:px-6 hover:ring-[3px] hover:ring-brand/20"
+            show_signup_terms=false
+          }}
+          <div class="flex w-full items-center justify-center gap-3">
+            <button class="text-xs uppercase font-semibold font-sans text-typ hover:text-brand cursor-pointer" x-text="newsletters.length > 0 ? `${memberNewsletters.length}/${newsletters.length} {{t 'Select all'}}` : '{{t 'Select all'}}'" @click="memberNewsletters = Array.from(document.querySelectorAll('[data-members-newsletter]')).map(el => el.value);" x-show="memberNewsletters.length !== newsletters.length">
+              {{t "Select all"}}
+            </button>
+            <button class="text-xs uppercase font-semibold font-sans text-typ hover:text-brand cursor-pointer" @click="memberNewsletters = []" x-show="memberNewsletters.length == newsletters.length">
+              {{t "Deselect all"}}
+            </button>
+          </div>
+        {{/if}}
+      </div>
+    </section>
+  {{/if}}
+{{/get}}
+
+{{!-- Content --}}
+{{#page}}
+  {{#if html}}
+    <article class="{{post_class}} ghost-content prose md:prose-lg prose-theme mt-12"{{#unless access}} data-preview{{/unless}}>
+      {{content}}
+    </article>
+  {{/if}}
+{{/page}}

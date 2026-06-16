@@ -1,0 +1,60 @@
+{{!< default}}
+
+{{#author}}
+  <section class="px-5 sm:px-6 mb-8" data-author>
+    <div class="max-w-xl mx-auto py-12 md:py-16 flex flex-col gap-3 items-center justify-center text-center">
+      {{#if profile_image}}
+        <figure class="rounded-full h-full relative" role="none">
+          {{> image
+            image_type="author"
+            image_class="object-cover size-24 rounded-full aspect-square"
+            image_url=profile_image
+            size_xs=true
+            size_s=true
+            size_m=true
+            sizes="(max-width: 600px) 100px, 160px"
+            loading="eager"
+          }}
+        </figure>
+      {{/if}}
+      
+      <h1 class="font-semibold tracking-tight text-2xl md:text-3xl md:font-medium lg:text-4xl">{{name}}</h1>
+
+      {{#if bio}}
+        <p class="text-lg text-typ-tone">{{bio}}</p>
+      {{/if}}
+
+      {{> author-socials
+        ul_class="justify-center mt-2"
+      }}
+    </div>
+  </section>
+{{/author}}
+
+<section class="px-5 sm:px-6 mb-16" data-author-posts>
+  <div class="max-w-3xl mx-auto">    
+    {{!-- Subheading & navigation --}}
+    <div class="flex gap-2 items-center justify-between mb-3">
+      <h2 class="uppercase font-semibold text-sm">{{t "Page {current_page} of {total_pages}" current_page=pagination.page total_pages=pagination.pages}}</h2>
+
+      {{#match pagination.pages ">" 1}}
+        <nav class="flex gap-2">
+          <a data-prev class="flex items-center justify-center gap-0.5 rounded-full size-7 group border border-brd bg-bgr {{#if pagination.prev}} text-typ hover:bg-bgr-tone{{else}} cursor-not-allowed disabled{{/if}}" 
+            href="{{#if pagination.prev}}{{page_url pagination.prev}}{{else}}javascript:{{/if}}">
+            {{> icon name="chevron-left" icon_class="size-4 stroke-[2.5] -ml-0.5"}}
+          </a>
+          <a data-next class="flex items-center justify-center gap-0.5 rounded-full size-7 group border border-brd bg-bgr {{#if pagination.next}} text-typ hover:bg-bgr-tone{{else}} cursor-not-allowed disabled{{/if}}" 
+            href="{{#if pagination.next}}{{page_url pagination.next}}{{else}}javascript:{{/if}}">
+            {{> icon name="chevron-right" icon_class="size-4 stroke-[2.5] -mr-0.5"}}
+          </a>
+        </nav>
+      {{/match}}
+    </div>
+
+    {{!-- Episodes feed --}}
+    {{> post-feed}}
+
+    {{!-- Pagination --}}
+    {{> pagination}}
+  </div>
+</section>

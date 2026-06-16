@@ -1,0 +1,28 @@
+{{#get "pages" filter="slug:home-content" limit="1"}}
+  {{#foreach pages}}
+    {{#if html}}
+      <section class="px-5 sm:px-6 mb-24" data-content>
+        <div class="max-w-container mx-auto flex flex-col md:flex-row gap-8 lg:gap-12 xl:gap-16 items-start">
+          <article class="md:sticky md:top-8 mb-0! flex-1 ghost-content prose md:prose-lg prose-theme md:prose-h2:text-2xl lg:prose-h2:text-3xl md:prose-h2:mb-4" style="--gap:0">
+            {{content}}
+          </article>
+
+          {{#if feature_image}}
+            <figure class="overflow-hidden flex-1 md:sticky md:top-8 " role="none">
+              {{> image
+                image_type="post"
+                image_class="object-cover w-full rounded-theme"
+                image_url=feature_image
+                size_s=true
+                size_m=true
+                size_l=true
+                sizes="(max-width: 767px) 90vw, (max-width: 1023px) 45vw, 540px"
+                loading="lazy"
+              }}
+            </figure>
+          {{/if}}
+        </div>
+      </section>
+    {{/if}}
+  {{/foreach}}
+{{/get}}

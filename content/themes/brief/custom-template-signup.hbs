@@ -1,0 +1,51 @@
+{{!< default}}
+
+{{#if @member.paid}}
+
+  {{!-- Logged in, paying member: Redirect home --}}
+  <script>window.location = '{{@site.url}}';</script>
+
+{{else if @member}}
+
+  {{!-- Logged in, paying member: Redirect to account page --}}
+  <script>window.location = '{{@site.url}}/#/portal/account/';</script>
+  
+{{else}}    
+
+  <section class="px-5 sm:px-6 relative flex items-center justify-center min-h-[calc(100vh-140px)] md:min-h-[calc(100vh-160px)]" data-page-signup>
+    <div class="w-full max-w-sm mx-auto md:p-8 md:bg-bgr-tone rounded-theme">
+      {{#unless @site.members_invite_only}}
+        <h1 class="text-center font-medium text-2xl sm:text-3xl mb-6">{{#page}}{{title}}{{/page}}</h1>
+        <p id="form-input-label" class="text-typ-tone mb-6">
+          {{#page}}{{excerpt}}{{/page}}
+        </p>
+
+        {{!-- {{t "Continue"}} --}}
+        {{> subscribe-form
+          form_type="signup" 
+          fieldset_class="w-full flex flex-col gap-4 rounded-theme"
+          input_class="bg-bgr text-typ flex-2 px-4 py-2.5 rounded-btn border border-brd focus:border-brand focus:ring-4 focus:ring-brand/20"
+          button_class="flex-1 px-4 py-2.5 bg-brand text-brand-contrast font-medium rounded-btn md:px-6 hover:ring-4 hover:ring-brand/20"
+          button_text=(t 'Continue') 
+          name_field=true
+        }}
+        
+        <p class="mt-3 text-center text-typ-tone">
+          <small>{{t "Already have an account?"}} 
+            {{#link class="underline hover:text-brand" href="/signin/"}}{{t "Sign in"}}{{/link}}
+          </small>
+        </p>
+      {{else}}
+        <p class="text-center mt-2">{{t "This site is invite-only, contact the owner for access."}}</p>
+      {{/unless}}
+    </div>
+  </section>
+
+{{/if}}
+
+{{#contentFor "styles"}}
+  <style>
+    [data-footer-top] { display: none; }
+    [data-footer] { margin-top: 0; }
+  </style>
+{{/contentFor}}

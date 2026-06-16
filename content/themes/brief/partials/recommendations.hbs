@@ -1,0 +1,31 @@
+{{#if recommendations}}
+  <div class="flex items-center justify-between gap-2 mb-2">
+    <h2 class="uppercase font-semibold text-sm">{{t "Recommendations"}}</h2>
+    <button data-portal="recommendations" class="text-sm font-medium flex items-center gap-1 rounded-btn group bg-bgr text-typ hover:text-typ-tone cursor-pointer">
+      {{t "Show all"}}
+      {{> icon name="chevron-right" icon_class="size-[14px] stroke-[2.5] transition-transform"}}
+    </button>
+  </div>
+
+  <ul class="flex flex-col bg-bgr-tone rounded-theme mb-6" data-recommendations>
+    {{#foreach recommendations as |rec|}}
+      <li class="">  
+        <a class="group block p-4 md:p-5 pb-0 md:pb-0 hover:bg-linear-to-r hover:from-bgr-tone hover:via-bgr hover:to-bgr-tone" href="{{rec.url}}" data-recommendation="{{rec.id}}" target="_blank" rel="noopener">
+          <div class="{{#unless @last}}border-b border-brd{{/unless}} pb-4 md:pb-5 text-sm leading-tight pl-16 relative flex flex-col gap-1.5">
+            <div class="absolute left-0">
+              {{#if rec.favicon}}
+                <img class="size-12 rounded-theme" src="{{rec.favicon}}" alt="{{rec.title}}" loading="lazy" onerror="this.style.display='none';">
+              {{/if}}
+            </div>
+            <h3 class="font-semibold inline-flex justify-between gap-1">
+              <span class="">{{rec.title}}</span>
+              {{> icon name="arrow-right-up" icon_class="size-4 right-4 top-4 opacity-0 transition-[opacity,visibility] invisible group-hover:opacity-100 group-hover:visible"}}
+            </h3>
+            {{!-- <span class="recommendation-url">{{readable_url rec.url}}</span> --}}
+            <p class="line-clamp-2 text-typ-tone">{{rec.description}}</p>
+          </div>
+        </a>
+      </li>
+    {{/foreach}}
+  </ul>
+{{/if}}

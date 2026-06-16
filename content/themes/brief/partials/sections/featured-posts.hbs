@@ -1,0 +1,98 @@
+{{#get "posts" filter="featured:true" include="tags,authors,tiers" limit="12"}}
+  {{#if posts}}
+    <section class="px-5 sm:px-6 mb-16" data-featured-posts>
+      <div class="max-w-container mx-auto relative">
+        <h2 class="uppercase font-bold text-sm mb-3">{{t "Featured issues"}}</h2>
+
+        {{> illustration-arrow icon_class="hidden fill-brand size-20 md:size-24 absolute right-0 -top-16 md:-top-20 z-20"}}
+
+        <div class="flex flex-col md:flex-row bg-bgr border border-brd rounded-theme md:h-[60rem] md:max-h-[40rem] overflow-hidden" data-featured-posts-list x-data="{ activePost: '{{posts.[0].id}}' }">
+          <ul class="md:flex-2 p-4 sm:p-5 border-b border-brd md:border-b-0 md:border-r overflow-y-scroll max-h-[16rem] md:max-h-none"> 
+            {{#foreach posts}}
+              <li :data-active="activePost === '{{id}}' && 'true'" :class="activePost === '{{id}}' && '[&+li_a_div]:border-transparent'">
+                <a href="javascript:" class="block rounded-theme-sm px-4 hover:bg-bgr-tone border" :class="activePost === '{{id}}' ? 'is-active border-brd rounded-theme-sm bg-bgr-tone text-typ' : 'text-typ-tone border-transparent'" @click="activePost = '{{id}}'">
+                  <div class="{{post_class}} flex flex-col gap-2.5 py-4 border-t border-b-brd{{#if @first}} border-t-transparent{{/if}}" :class="activePost === '{{id}}' ? 'border-transparent' : ''">
+                    <div class="hidden md:flex flex-wrap gap-1.5 text-xs font-medium opacity-80">
+                      {{!-- Date --}}
+                      <time class="" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>  
+                      
+                      {{!-- {{t "1 min read"}} {{t "% min read"}} --}}
+                      {{#if reading_time}}
+                        <span>·</span>
+                        {{reading_time minute=(t '1 min read') minutes=(t '% min read')}}
+                      {{/if}}
+
+                      {{!-- Spacing --}}
+                      <span class="flex-1" role="none"></span>
+
+                      {{!-- Visibility --}}
+                      {{#unless access}}
+                        <span  data-post-visibility class="">
+                          {{> icon name="lock" icon_class="size-3.5" stroke_width="stroke-[2.5]"}}
+                        </span>
+                      {{/unless}}
+                    </div>
+
+                    {{!-- Title --}}
+                    <p class="text-sm font-medium leading-tight line-clamp-1">{{title}}</p>
+                  </div>
+                </a>
+              </li>
+            {{/foreach}}
+          </ul>
+          <div class="flex-1 md:flex-3 bg-bgr-tone p-5 sm:p-6 md:p-8 pt-0! h-full md:max-h-[40rem] overflow-y-scroll pb-8 md:pb-12" data-featured-posts-content>
+            {{#foreach posts}}
+              <div id="{{id}}" class="flex-col gap-4" :class="activePost === '{{id}}' ? 'flex' : 'hidden'">
+                <div class="flex gap-2 border-b border-brd pb-4 mb-2 sticky top-0 bg-bgr-tone pt-8 z-10">
+                  {{#foreach authors limit="1"}}
+                    {{#if profile_image}}
+                      {{> image
+                        image_type="author"
+                        image_class="size-10 object-cover rounded-full"
+                        image_url=profile_image
+                        size_xxs=true
+                        size_xs=true
+                        sizes="40px"
+                      }}
+                    {{/if}}
+                  {{/foreach}}
+                  <div class="flex flex-col gap-0.5 text-sm font-medium w-full">
+                    {{#foreach authors limit="1"}}<a href="{{url}}" class="self-start opacity-80 hover:opacity-100">{{name}}</a>{{/foreach}}
+                    <div class="flex gap-2 w-full">
+                      <h2 class="leading-tight flex-1">{{title}}</h2>
+                      <a href="{{url}}" class="hover:text-brand">
+                        {{> icon name="link" icon_class="size-4" stroke_width="stroke-[2.5]"}}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                {{!-- <figure class="overflow-hidden" role="none">
+                  {{> image
+                    image_type="post"
+                    image_class="rounded-theme-sm"
+                    image_url=feature_image
+                    size_s=true
+                    size_m=true
+                    size_l=true
+                    sizes="(max-width: 767px) 90vw, 580px"
+                    loading="lazy"
+                  }}
+                </figure> --}}
+
+                <article class="prose prose-theme" data-preview="tone">
+                  {{#if access}}
+                    {{content words="150"}}
+                  {{else}}
+                    {{{html}}}
+                  {{/if}}
+                </article>
+
+                <a class="self-center flex items-center gap-1 bg-brand font-medium text-brand-contrast px-6 py-1.5 rounded-btn md:py-2 transition hover:ring-[3px] hover:ring-brand/20" href="{{url}}">{{t "Read more"}}</a>
+              </div>
+            {{/foreach}}
+          </div>
+        </div>
+      </div>
+    </section>
+  {{/if}}
+{{/get}}

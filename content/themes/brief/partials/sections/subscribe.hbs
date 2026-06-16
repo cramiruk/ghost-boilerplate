@@ -1,0 +1,53 @@
+{{#get "pages" filter="slug:home-subscribe" limit="1"}}
+  {{#foreach pages}}
+    {{#unless @member}}
+      <section class="px-5 sm:px-6 my-8" data-subscribe>
+        <div class="max-w-container mx-auto relative">
+          {{> illustration-arrow icon_class="fill-brand size-20 md:size-24 absolute right-0 -top-16 md:-top-20"}}
+
+          <div class="flex flex-col gap-8 md:flex-row bg-bgr-tone rounded-theme p-5 sm:p-6 md:p-8 lg:p-12 lg:gap-10 xl:gap-12">
+            <div class="md:flex-3 flex flex-col gap-6">
+              <article class="ghost-content prose prose-theme md:prose-lg mb-0! prose-h2:font-medium prose-h2:text-xl md:prose-h2:text-2xl" style="--gap:0">
+                {{content}}
+              </article>
+
+              {{#if feature_image}}
+                {{> subscribe-form 
+                  fieldset_class="w-full max-w-md bg-bgr border border-brd flex flex-wrap rounded-btn bg-bgr p-[5px] focus-within:border-brand focus-within:ring-4 focus-within:ring-brand/20"
+                  input_class="bg-bgr text-typ flex-2 py-2 rounded-btn border-none focus:ring-0"
+                  button_class="flex-1 px-4 py-2 bg-brand text-brand-contrast font-medium rounded-btn md:px-6 hover:ring-[3px] hover:ring-brand/20"
+                  show_signup_terms=true
+                }}
+              {{/if}}
+            </div>
+
+            <div class="md:flex-2 flex flex-col gap-3">
+              {{#if feature_image}}
+                <figure class="overflow-hidden flex-1" role="none">
+                  {{> image
+                    image_type="post"
+                    image_class="object-cover w-full rounded-theme-sm"
+                    image_url=feature_image
+                    size_s=true
+                    size_m=true
+                    size_l=true
+                    sizes="(max-width: 767px) 90vw, (max-width: 1023px) 45vw, 540px"
+                    loading="eager"
+                  }}
+                </figure>
+              {{else}}
+                {{#if custom_excerpt}}<p class="md:text-lg text-typ-content">{{custom_excerpt}}</p>{{/if}}
+                {{> subscribe-form 
+                  fieldset_class="w-full max-w-md bg-bgr border border-brd flex flex-wrap rounded-btn bg-bgr p-[5px] focus-within:border-brand focus-within:ring-4 focus-within:ring-brand/20"
+                  input_class="bg-bgr text-typ flex-2 py-2 rounded-btn border-none focus:ring-0"
+                  button_class="flex-1 px-4 py-2 bg-brand text-brand-contrast font-medium rounded-btn md:px-6 hover:ring-[3px] hover:ring-brand/20"
+                  show_signup_terms=true
+                }}
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </section>
+    {{/unless}}
+  {{/foreach}}
+{{/get}}
