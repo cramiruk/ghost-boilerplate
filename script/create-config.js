@@ -63,6 +63,10 @@ function buildConfig() {
   const mailgunSmtpLogin = process.env.MAILGUN_SMTP_LOGIN;
   const mailgunSmtpPassword = process.env.MAILGUN_SMTP_PASSWORD;
   const mailFrom = getMailFrom({mailgunSmtpLogin, mailgunDomain});
+  // EU-region Mailgun accounts must target api.eu.mailgun.net / smtp.eu.mailgun.org.
+  // The library defaults to the US host, which silently returns 401 Unauthorized
+  // for an EU domain (breaks member signup / magic-link email). Set MAILGUN_REGION=eu.
+  const mailgunIsEu = getEnv('MAILGUN_REGION', 'us').toLowerCase() === 'eu';
 
   if (mailgunApiKey && mailgunDomain) {
     config.mail = {
@@ -72,7 +76,8 @@ function buildConfig() {
         auth: {
           api_key: mailgunApiKey,
           domain: mailgunDomain
-        }
+        },
+        ...(mailgunIsEu ? {host: 'api.eu.mailgun.net'} : {})
       }
     };
   } else if (mailgunSmtpLogin && mailgunSmtpPassword) {
@@ -80,7 +85,7 @@ function buildConfig() {
       transport: 'SMTP',
       from: mailFrom,
       options: {
-        host: getEnv('MAILGUN_SMTP_HOST', 'smtp.mailgun.org'),
+        host: getEnv('MAILGUN_SMTP_HOST', mailgunIsEu ? 'smtp.eu.mailgun.org' : 'smtp.mailgun.org'),
         port: Number(getEnv('MAILGUN_SMTP_PORT', '2525')),
         secure: false,
         requireTLS: true,
