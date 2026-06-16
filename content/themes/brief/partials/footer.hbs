@@ -1,4 +1,4 @@
-<footer class="px-5 sm:px-6 bg-bgr-tone mt-16 sm:bg-bgr {{#is "home"}}{{#unless @custom.show_header_and_footer}} hidden{{/unless}}{{/is}}" data-footer>
+<footer class="px-5 sm:px-6 mt-16 {{#is "home"}}{{#unless @custom.show_header_and_footer}} hidden{{/unless}}{{/is}}" data-footer>
   <div class="max-w-container mx-auto">
     <div class="relative overflow-hidden flex flex-col items-center gap-6 bg-bgr-tone rounded-theme py-12 sm:px-8" data-footer-top>
       {{!-- Content --}}
@@ -43,9 +43,6 @@
         icon_class="size-4 stroke-2"
         text_class="hidden"
       }}
-
-      {{!-- Site title in bg --}}
-      <span data-footer-bg class="absolute -bottom-[0.14em] -left-[0.075em] text-center hidden font-semibold sm:block text-[clamp(5rem,4rem+5vw,8rem)] leading-none bg-linear-to-t from-brd to-bgr-tone text-transparent bg-clip-text z-0 opacity-75 whitespace-nowrap">{{@site.title}}</span>
     </div>
 
     {{!-- Copy & Color scheme --}}
