@@ -22,7 +22,11 @@
   color:var(--vs-fg);
   font-family:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   -webkit-font-smoothing:antialiased;
+  /* Match Brief's content container (px-5 sm:px-6) so the hero's left/right
+     edges line up with the header logo and nav. */
+  padding-left:20px;padding-right:20px;
 }
+@media (min-width:640px){ .vs-hero{padding-left:24px;padding-right:24px;} }
 .vs-hero *{box-sizing:border-box;}
 
 /* ---- Header / nav ---- */
@@ -42,7 +46,7 @@
 }
 
 /* ---- Hero body ---- */
-.vs-hero__inner{max-width:1440px;margin:0 auto;padding:100px 52px 112px;}
+.vs-hero__inner{max-width:var(--container-width);margin:0 auto;padding:100px 0 112px;}
 .vs-eyebrow{
   font-size:13px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
   color:var(--vs-faint);margin-bottom:30px;
@@ -138,7 +142,7 @@
 @media (max-width:900px){
   .vs-header{padding:20px 22px;flex-wrap:wrap;gap:14px;}
   .vs-nav{display:none;}
-  .vs-hero__inner{padding:64px 22px 76px;}
+  .vs-hero__inner{padding:64px 0 76px;}
   .vs-headline{font-size:clamp(44px,12vw,90px);}
   .vs-sub{font-size:19px;}
   .vs-track__grid{grid-template-columns:1fr;}
