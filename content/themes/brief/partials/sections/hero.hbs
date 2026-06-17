@@ -34,7 +34,8 @@
 
     {{!-- Buttons: primary → latest issue, secondary → Issues tag (same as nav) --}}
     <div class="vs-cta">
-      {{#get "posts" limit="1" as |latest|}}
+      {{!-- Latest issue-tagged post, excluding backtests --}}
+      {{#get "posts" filter="tag:issue+tag:-backtest" limit="1" as |latest|}}
         {{#foreach latest}}
           <a class="vs-btn vs-btn--primary" href="{{url}}">Read the latest issue</a>
         {{/foreach}}
