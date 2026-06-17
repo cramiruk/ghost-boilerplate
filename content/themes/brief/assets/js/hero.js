@@ -21,6 +21,23 @@
       el.appendChild(word);
     }
     word.textContent = words[0];
+
+    // Centered rotators jitter as the word width changes; lock the slot to the
+    // widest word so the line stays put. Opt-in via data-fixed (the hero's
+    // left-aligned rotator doesn't need it). Measure after fonts load.
+    if (el.hasAttribute('data-fixed')) {
+      var lock = function () {
+        var probe = document.createElement('span');
+        probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;';
+        el.appendChild(probe);
+        var max = 0;
+        words.forEach(function (w) { probe.textContent = w; max = Math.max(max, probe.offsetWidth); });
+        el.removeChild(probe);
+        el.style.width = Math.ceil(max + 1) + 'px';
+      };
+      if (document.fonts && document.fonts.ready) { document.fonts.ready.then(lock); } else { lock(); }
+    }
+
     if (reduce) return; // show first word, no animation
 
     var i = 0;

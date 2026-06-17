@@ -52,14 +52,14 @@
           subscribe form, social bar. Kinetic markup reuses hero.css/hero.js
           (loaded on the homepage only). --}}
     {{#is "home"}}
-    <div class="flex flex-col items-center text-center gap-5 bg-bgr-tone rounded-theme py-9 sm:px-8" data-footer-top>
-      <a href="{{@site.url}}" data-brand>
+    <div class="flex flex-col items-center text-center gap-5 py-9 sm:px-8" data-footer-top>
+      <a href="{{@site.url}}" data-brand class="vs-foot-brand">
         {{> logo loading="lazy"}}
       </a>
 
       {{!-- Kinetic string, matching the hero (sized to the small logo) --}}
       <div class="vs-foot-kinetic" aria-label="{{@custom.hero_headline}} {{@custom.hero_headline_suffix}}">
-        <span class="vs-headline__line">{{@custom.hero_headline}} <span class="vs-rotate" data-words="{{@custom.hero_rotating_words}}" data-interval="1800" aria-hidden="true"><span class="vs-rotate__word"></span></span></span>
+        <span class="vs-headline__line">{{@custom.hero_headline}} <span class="vs-rotate" data-fixed data-words="{{@custom.hero_rotating_words}}" data-interval="1800" aria-hidden="true"><span class="vs-rotate__word"></span></span></span>
         <span class="vs-headline__line">{{@custom.hero_headline_suffix}}</span>
       </div>
 
