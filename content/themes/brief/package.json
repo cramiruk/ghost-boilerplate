@@ -180,25 +180,16 @@
         "description": "Set the homepage hero subheading",
         "group": "homepage"
       },
-      "hero_text_alignment": {
-        "type": "select",
-        "options": [
-          "left",
-          "center"
-        ],
-        "default": "left",
-        "description": "Set the text alignment for the headline & subheading",
+      "hero_eyebrow": {
+        "type": "text",
+        "default": "Market intelligence",
+        "description": "Homepage hero: the small label line above the headline",
         "group": "homepage"
       },
-      "hero_cover_image_style": {
-        "type": "select",
-        "options": [
-          "left-side",
-          "right-side",
-          "none"
-        ],
-        "default": "none",
-        "description": "Set the cover image style for the hero section",
+      "hero_headline_suffix": {
+        "type": "text",
+        "default": "moves next.",
+        "description": "Homepage hero: the fixed headline line after the rotating word",
         "group": "homepage"
       },
       "hero_subscribe_style": {

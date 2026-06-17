@@ -3,23 +3,26 @@
       assets/js/hero.js (loaded in home.hbs). Brief's own nav stays.
 
       Editable in Ghost Admin → Design → Homepage:
-        • Headline lead text  → "hero_headline"        (e.g. "See where")
-        • Rotating words      → "hero_rotating_words"   (comma-separated)
+        • Eyebrow line        → "hero_eyebrow"
+        • Headline lead text  → "hero_headline"          (e.g. "See where")
+        • Rotating words      → "hero_rotating_words"     (comma-separated)
+        • Headline suffix     → "hero_headline_suffix"    (the fixed line)
         • Subheading          → "hero_subheading"
-      Edit here in the file: the eyebrow text and the fixed
-      "moves next." line (kept fixed so it doesn't shift while the
-      word rotates). No Ghost-setting slots left (theme cap is 20).
+      The suffix is a separate fixed line so it doesn't shift while
+      the word above it rotates.
       ============================================================ --}}
 <section class="vs-hero">
   <div class="vs-hero__inner">
 
     {{!-- Eyebrow (the line above the headline) --}}
-    <div class="vs-eyebrow">Market intelligence</div>
+    {{#if @custom.hero_eyebrow}}
+      <div class="vs-eyebrow">{{@custom.hero_eyebrow}}</div>
+    {{/if}}
 
-    {{!-- Headline: lead text + rotating words from settings; suffix fixed --}}
-    <h1 class="vs-headline" aria-label="{{@custom.hero_headline}} moves next.">
+    {{!-- Headline: lead text + rotating words + fixed suffix line, all from settings --}}
+    <h1 class="vs-headline" aria-label="{{@custom.hero_headline}} {{@custom.hero_headline_suffix}}">
       <span class="vs-headline__line">{{@custom.hero_headline}} <span class="vs-rotate" data-words="{{@custom.hero_rotating_words}}" data-interval="1800" aria-hidden="true"><span class="vs-rotate__word"></span></span></span>
-      <span class="vs-headline__line">moves next.</span>
+      <span class="vs-headline__line">{{@custom.hero_headline_suffix}}</span>
     </h1>
 
     {{!-- Subheader (Ghost: Hero subheading), with fallback --}}
