@@ -9,13 +9,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap');
 
 .vs-hero {
-  --vs-bg:#0C0C0E;
-  --vs-fg:#ffffff;
-  --vs-muted:#9C9CA4;
-  --vs-faint:#6B6B72;
-  --vs-nav:#C7C7CD;
-  --vs-accent:#FB1E7C;
-  --vs-border:rgba(255,255,255,0.07);
+  /* Colors inherit Brief's light/dark scheme tokens (see main.css) */
+  --vs-bg:var(--color-background);
+  --vs-fg:var(--color-typography);
+  --vs-muted:var(--color-typography-tone);
+  --vs-faint:color-mix(in srgb, var(--color-typography), transparent 45%);
+  --vs-nav:var(--color-typography-tone);
+  --vs-accent:var(--color-brand);
+  --vs-border:var(--color-border);
 
   background:var(--vs-bg);
   color:var(--vs-fg);
@@ -71,12 +72,12 @@
 }
 .vs-cta{display:flex;align-items:center;gap:18px;margin-top:46px;flex-wrap:wrap;}
 .vs-btn{font-size:17px;font-weight:600;text-decoration:none;border-radius:999px;}
-.vs-btn--primary{background:var(--vs-accent);color:#fff;padding:15px 34px;}
+.vs-btn--primary{background:var(--vs-accent);color:var(--color-brand-contrast,#fff);padding:15px 34px;}
 .vs-btn--ghost{
   color:var(--vs-fg);padding:15px 8px;border-radius:0;
-  border-bottom:1px solid rgba(255,255,255,0.3);
+  border-bottom:1px solid color-mix(in srgb, var(--vs-fg), transparent 70%);
 }
-.vs-btn--ghost:hover{border-bottom-color:rgba(255,255,255,0.7);}
+.vs-btn--ghost:hover{border-bottom-color:color-mix(in srgb, var(--vs-fg), transparent 30%);}
 
 /* ---- Responsive ---- */
 @media (max-width:900px){

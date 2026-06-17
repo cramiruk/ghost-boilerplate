@@ -165,12 +165,19 @@
       },
       "hero_headline": {
         "type": "text",
-        "description": "Set the homepage hero headline (you can include HTML)",
+        "default": "See where",
+        "description": "Homepage hero: headline text before the rotating word (e.g. 'See where'). The fixed 'moves next.' line and eyebrow are in partials/sections/hero.hbs.",
+        "group": "homepage"
+      },
+      "hero_rotating_words": {
+        "type": "text",
+        "default": "capital,talent,attention,margin",
+        "description": "Homepage hero: comma-separated words that rotate in the headline",
         "group": "homepage"
       },
       "hero_subheading": {
         "type": "text",
-        "description": "Set the homepage hero subheading (you can include HTML)",
+        "description": "Set the homepage hero subheading",
         "group": "homepage"
       },
       "hero_text_alignment": {

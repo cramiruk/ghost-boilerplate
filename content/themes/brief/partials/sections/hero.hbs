@@ -1,37 +1,42 @@
 {{!-- ============================================================
-      Vecstrata kinetic hero. Markup/styles from the design ref
-      (assets/css/hero.css + assets/js/hero.js, loaded in home.hbs).
-      Brief's own nav/header stays; only the hero body lives here.
-      Edit copy below: eyebrow text, the rotating data-words, the
-      static headline lines, the .vs-sub paragraph, button labels.
+      Vecstrata kinetic hero. Styles/JS: assets/css/hero.css +
+      assets/js/hero.js (loaded in home.hbs). Brief's own nav stays.
+
+      Editable in Ghost Admin → Design → Homepage:
+        • Headline lead text  → "hero_headline"        (e.g. "See where")
+        • Rotating words      → "hero_rotating_words"   (comma-separated)
+        • Subheading          → "hero_subheading"
+      Edit here in the file: the eyebrow text and the fixed
+      "moves next." line (kept fixed so it doesn't shift while the
+      word rotates). No Ghost-setting slots left (theme cap is 20).
       ============================================================ --}}
 <section class="vs-hero">
   <div class="vs-hero__inner">
 
     {{!-- Eyebrow (the line above the headline) --}}
-    <div class="vs-eyebrow">Market intelligence, weekly</div>
+    <div class="vs-eyebrow">Market intelligence</div>
 
-    {{!-- Headline with rotating word. Edit terms in data-words;
-          data-interval is ms per word. --}}
-    <h1 class="vs-headline" aria-label="See where capital moves next.">
-      <span class="vs-headline__line">See where <span class="vs-rotate" data-words="capital,talent,attention,margin" data-interval="1800" aria-hidden="true"><span class="vs-rotate__word">capital</span></span></span>
+    {{!-- Headline: lead text + rotating words from settings; suffix fixed --}}
+    <h1 class="vs-headline" aria-label="{{@custom.hero_headline}} moves next.">
+      <span class="vs-headline__line">{{@custom.hero_headline}} <span class="vs-rotate" data-words="{{@custom.hero_rotating_words}}" data-interval="1800" aria-hidden="true"><span class="vs-rotate__word"></span></span></span>
       <span class="vs-headline__line">moves next.</span>
     </h1>
 
-    {{!-- Subheader --}}
-    <p class="vs-sub">
-      We catch the shift early — and show the reasoning, so you can act on it
-      before the rest of the market does.
-    </p>
+    {{!-- Subheader (Ghost: Hero subheading), with fallback --}}
+    {{#if @custom.hero_subheading}}
+      <p class="vs-sub">{{{@custom.hero_subheading}}}</p>
+    {{else}}
+      <p class="vs-sub">We catch the shift early — and show the reasoning, so you can act on it before the rest of the market does.</p>
+    {{/if}}
 
-    {{!-- Buttons. Primary links to the latest issue, ghost to the archive. --}}
+    {{!-- Buttons: primary → latest issue, secondary → Issues tag (same as nav) --}}
     <div class="vs-cta">
       {{#get "posts" limit="1" as |latest|}}
         {{#foreach latest}}
-          <a class="vs-btn vs-btn--primary" href="{{url}}">Read this week's issue</a>
+          <a class="vs-btn vs-btn--primary" href="{{url}}">Read the latest issue</a>
         {{/foreach}}
       {{/get}}
-      <a class="vs-btn vs-btn--ghost" href="/archive/">Browse the archive</a>
+      <a class="vs-btn vs-btn--ghost" href="/tag/issue/">Browse all issues</a>
     </div>
 
   </div>
