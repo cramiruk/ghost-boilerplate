@@ -48,7 +48,7 @@
   color:var(--vs-faint);margin-bottom:30px;
 }
 .vs-headline{
-  margin:0;font-size:90px;line-height:1.0;letter-spacing:-0.035em;
+  margin:0;font-size:90px;line-height:1.12;letter-spacing:-0.035em;
   font-weight:800;color:var(--vs-fg);
 }
 .vs-headline__line{display:block;}
@@ -56,8 +56,8 @@
 
 /* rotating word */
 .vs-rotate{
-  display:inline-block;height:1em;line-height:1.05;overflow:hidden;
-  vertical-align:bottom;position:relative;
+  display:inline-block;height:1.2em;line-height:1.05;overflow:hidden;
+  vertical-align:bottom;position:relative;margin-bottom:-0.2em;
 }
 .vs-rotate__word{
   display:block;color:var(--vs-accent);line-height:1.05;
