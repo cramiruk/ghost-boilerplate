@@ -67,6 +67,16 @@
 .vs-rotate__word.is-out{transform:translateY(-110%);opacity:0;}
 .vs-rotate__word.is-in{transform:translateY(110%);opacity:0;transition:none;}
 
+/* Footer kinetic string — same rotator, small (logo-sized), centered.
+   Lives outside .vs-hero, so it re-declares the vars the rotator reads. */
+.vs-foot-kinetic{
+  --vs-accent:var(--color-brand);
+  --vs-fg:var(--color-typography);
+  font-family:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:26px;line-height:1.1;font-weight:800;letter-spacing:-0.02em;
+  text-align:center;color:var(--vs-fg);
+}
+
 .vs-sub{
   margin:38px 0 0;font-size:23px;line-height:1.5;color:var(--vs-muted);max-width:600px;
 }
