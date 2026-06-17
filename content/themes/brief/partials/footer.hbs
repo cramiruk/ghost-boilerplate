@@ -1,5 +1,7 @@
 <footer class="px-5 sm:px-6 mt-16 {{#is "home"}}{{#unless @custom.show_header_and_footer}} hidden{{/unless}}{{/is}}" data-footer>
   <div class="max-w-container mx-auto">
+    {{!-- Footer box hidden on the homepage; copyright line below stays --}}
+    {{^is "home"}}
     <div class="relative overflow-hidden flex flex-col items-center gap-6 bg-bgr-tone rounded-theme py-12 sm:px-8" data-footer-top>
       {{!-- Content --}}
       <div class="flex flex-col items-center text-center gap-3 max-w-md" data-footer-brand>
@@ -44,6 +46,7 @@
         text_class="hidden"
       }}
     </div>
+    {{/is}}
 
     {{!-- Copy & Color scheme --}}
     <div class="py-4 md:py-6 flex flex-wrap justify-center items-center text-center gap-2 relative border-t border-brd sm:border-none" data-footer-bottom>

@@ -1,0 +1,93 @@
+/* ============================================================
+   Vecstrata — Kinetic hero (P1)
+   Namespaced with .vs- so it won't collide with your theme.
+   Drop this into your theme's CSS (e.g. assets/css/screen.css)
+   or load as a separate stylesheet. Fonts: Archivo (Google).
+   ============================================================ */
+
+/* Optional font import — or load via Ghost code injection (see README) */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap');
+
+.vs-hero {
+  --vs-bg:#0C0C0E;
+  --vs-fg:#ffffff;
+  --vs-muted:#9C9CA4;
+  --vs-faint:#6B6B72;
+  --vs-nav:#C7C7CD;
+  --vs-accent:#FB1E7C;
+  --vs-border:rgba(255,255,255,0.07);
+
+  background:var(--vs-bg);
+  color:var(--vs-fg);
+  font-family:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.vs-hero *{box-sizing:border-box;}
+
+/* ---- Header / nav ---- */
+.vs-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:26px 52px;max-width:1440px;margin:0 auto;
+}
+.vs-brand{display:flex;align-items:center;gap:13px;text-decoration:none;}
+.vs-brand__logo{display:block;width:34px;height:31px;}
+.vs-brand__name{font-size:24px;font-weight:700;letter-spacing:-0.02em;color:var(--vs-fg);}
+.vs-nav{display:flex;align-items:center;gap:34px;list-style:none;margin:0;padding:0;}
+.vs-nav a{font-size:15px;color:var(--vs-nav);text-decoration:none;}
+.vs-nav a:hover{color:var(--vs-fg);}
+.vs-subscribe{
+  background:var(--vs-accent);color:#fff;font-size:15px;font-weight:600;
+  padding:11px 26px;border-radius:999px;text-decoration:none;white-space:nowrap;
+}
+
+/* ---- Hero body ---- */
+.vs-hero__inner{max-width:1440px;margin:0 auto;padding:100px 52px 112px;}
+.vs-eyebrow{
+  font-size:13px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--vs-faint);margin-bottom:30px;
+}
+.vs-headline{
+  margin:0;font-size:90px;line-height:1.0;letter-spacing:-0.035em;
+  font-weight:800;color:var(--vs-fg);
+}
+.vs-headline__line{display:block;}
+.vs-headline__roll{display:inline-flex;align-items:baseline;gap:0.28em;}
+
+/* rotating word */
+.vs-rotate{
+  display:inline-block;height:1em;line-height:1.05;overflow:hidden;
+  vertical-align:bottom;position:relative;
+}
+.vs-rotate__word{
+  display:block;color:var(--vs-accent);line-height:1.05;
+  transition:transform .5s cubic-bezier(.7,0,.2,1), opacity .5s ease;
+  will-change:transform,opacity;
+}
+.vs-rotate__word.is-out{transform:translateY(-110%);opacity:0;}
+.vs-rotate__word.is-in{transform:translateY(110%);opacity:0;transition:none;}
+
+.vs-sub{
+  margin:38px 0 0;font-size:23px;line-height:1.5;color:var(--vs-muted);max-width:600px;
+}
+.vs-cta{display:flex;align-items:center;gap:18px;margin-top:46px;flex-wrap:wrap;}
+.vs-btn{font-size:17px;font-weight:600;text-decoration:none;border-radius:999px;}
+.vs-btn--primary{background:var(--vs-accent);color:#fff;padding:15px 34px;}
+.vs-btn--ghost{
+  color:var(--vs-fg);padding:15px 8px;border-radius:0;
+  border-bottom:1px solid rgba(255,255,255,0.3);
+}
+.vs-btn--ghost:hover{border-bottom-color:rgba(255,255,255,0.7);}
+
+/* ---- Responsive ---- */
+@media (max-width:900px){
+  .vs-header{padding:20px 22px;flex-wrap:wrap;gap:14px;}
+  .vs-nav{display:none;}
+  .vs-hero__inner{padding:64px 22px 76px;}
+  .vs-headline{font-size:clamp(44px,12vw,90px);}
+  .vs-sub{font-size:19px;}
+}
+
+/* Respect reduced-motion: stop the rotation, show first word */
+@media (prefers-reduced-motion:reduce){
+  .vs-rotate__word{transition:none;}
+}

@@ -1,5 +1,13 @@
 {{!< default}}
 
+{{!-- Kinetic hero assets, homepage only --}}
+{{#contentFor "styles"}}
+  <link rel="stylesheet" type="text/css" href="{{asset "css/hero.css"}}">
+{{/contentFor}}
+{{#contentFor "scripts"}}
+  <script src="{{asset "js/hero.js"}}"></script>
+{{/contentFor}}
+
 {{!-- Hero --}}
 {{> sections/hero}}
 

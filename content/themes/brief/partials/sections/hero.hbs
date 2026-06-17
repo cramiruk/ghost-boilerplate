@@ -1,60 +1,38 @@
-<section class="relative px-5 sm:px-6" data-hero>
-  <div class="mt-8 mb-16 md:mt-12 md:mb-20 max-w-container mx-auto flex flex-col{{#match @custom.hero_text_alignment "left"}} items-start{{else}} items-center{{/match}} justify-center gap-8 lg:gap-12{{#match @custom.hero_cover_image_style "right-side"}} md:flex-row{{/match}}{{#match @custom.hero_cover_image_style "left-side"}} md:flex-row-reverse{{/match}}">
+{{!-- ============================================================
+      Vecstrata kinetic hero. Markup/styles from the design ref
+      (assets/css/hero.css + assets/js/hero.js, loaded in home.hbs).
+      Brief's own nav/header stays; only the hero body lives here.
+      Edit copy below: eyebrow text, the rotating data-words, the
+      static headline lines, the .vs-sub paragraph, button labels.
+      ============================================================ --}}
+<section class="vs-hero">
+  <div class="vs-hero__inner">
 
-    {{!-- Content --}}
-    <div class="{{#match @custom.hero_cover_image_style "!=" "none"}}flex-3 self-center{{else}}flex-1{{/match}} flex flex-col gap-3 md:gap-4 justify-center{{#match @custom.hero_text_alignment "left"}} text-left items-start{{/match}}{{#match @custom.hero_text_alignment "center"}} text-center items-center{{/match}}">
-      {{!-- Headline --}}
-      <h1 class="font-medium tracking-tight text-balance text-3xl sm:text-4xl md:text-5xl md:font-normal{{#match @custom.hero_cover_image_style "none"}} lg:text-6xl xl:text-7xl{{/match}}" data-hero-headline>
-        {{#if @custom.hero_headline}}{{{@custom.hero_headline}}}{{else}}{{@site.description}}{{/if}}
-      </h1>
+    {{!-- Eyebrow (the line above the headline) --}}
+    <div class="vs-eyebrow">Market intelligence, weekly</div>
 
-      {{!-- Subheading --}}
-      {{#if @custom.hero_subheading}}
-        <p id="hero-input-label" class="text-balance text-typ-tone text-lg md:text-xl mb-1" data-hero-subheading>
-          {{{@custom.hero_subheading}}}
-        </p>
-      {{/if}}
+    {{!-- Headline with rotating word. Edit terms in data-words;
+          data-interval is ms per word. --}}
+    <h1 class="vs-headline" aria-label="See where capital moves next.">
+      <span class="vs-headline__line">See where <span class="vs-rotate" data-words="capital,talent,attention,margin" data-interval="1800" aria-hidden="true"><span class="vs-rotate__word">capital</span></span></span>
+      <span class="vs-headline__line">moves next.</span>
+    </h1>
 
-      {{!-- Subscribe --}}
-      {{#match @custom.hero_subscribe_style "inline"}}
-        {{> subscribe-form 
-          form_class="w-full max-w-md"
-          fieldset_class="w-full bg-bgr-tone border border-brd flex flex-wrap rounded-btn bg-bgr p-[5px] focus-within:border-brand focus-within:ring-4 focus-within:ring-brand/20"
-          input_class="bg-inherit text-typ flex-2 py-2 rounded-btn border-none focus:ring-0"
-          button_class="flex-1 px-4 py-2 bg-brand text-brand-contrast font-medium rounded-btn md:px-6 hover:ring-[3px] hover:ring-brand/20"
-          show_signup_terms=false
-        }}
-      {{/match}}
-      {{#match @custom.hero_subscribe_style "inline+section"}}
-        {{> subscribe-form 
-          form_class="w-full max-w-md"
-          fieldset_class="w-full bg-bgr-tone border border-brd flex flex-wrap rounded-btn bg-bgr p-[5px] focus-within:border-brand focus-within:ring-4 focus-within:ring-brand/20"
-          input_class="bg-inherit text-typ flex-2 py-2 rounded-btn border-none focus:ring-0"
-          button_class="flex-1 px-4 py-2 bg-brand text-brand-contrast font-medium rounded-btn md:px-6 hover:ring-[3px] hover:ring-brand/20"
-          show_signup_terms=false
-        }}
-      {{/match}}
+    {{!-- Subheader --}}
+    <p class="vs-sub">
+      We catch the shift early — and show the reasoning, so you can act on it
+      before the rest of the market does.
+    </p>
+
+    {{!-- Buttons. Primary links to the latest issue, ghost to the archive. --}}
+    <div class="vs-cta">
+      {{#get "posts" limit="1" as |latest|}}
+        {{#foreach latest}}
+          <a class="vs-btn vs-btn--primary" href="{{url}}">Read this week's issue</a>
+        {{/foreach}}
+      {{/get}}
+      <a class="vs-btn vs-btn--ghost" href="/archive/">Browse the archive</a>
     </div>
-
-    {{!-- Image --}}
-    {{#if @site.cover_image}}
-      <figure class="flex-2 w-full h-full{{#match @custom.hero_cover_image_style "none"}} hidden{{/match}}" role="none">
-        {{!-- Publication cover --}}
-        {{> image
-          picture_class="flex h-full"
-          image_type="site"
-          image_class="w-full object-cover object-center"
-          image_url=@site.cover_image
-          size_s=true
-          size_m=true
-          size_l=true
-          size_xl=true
-          size_xxl=true
-          sizes="(max-width: 1023px) 90vw, 38vw"
-          loading="eager"
-        }}
-      </figure>
-    {{/if}}
 
   </div>
 </section>
