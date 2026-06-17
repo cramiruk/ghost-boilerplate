@@ -48,7 +48,7 @@
   color:var(--vs-faint);margin-bottom:30px;
 }
 .vs-headline{
-  margin:0;font-size:90px;line-height:1.12;letter-spacing:-0.035em;
+  margin:0;font-size:90px;line-height:1.05;letter-spacing:-0.035em;
   font-weight:800;color:var(--vs-fg);
 }
 .vs-headline__line{display:block;}
