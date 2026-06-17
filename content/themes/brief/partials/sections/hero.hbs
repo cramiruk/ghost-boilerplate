@@ -43,5 +43,15 @@
       <a class="vs-btn vs-btn--ghost" href="/tag/issue/">Browse all issues</a>
     </div>
 
+    {{!-- Track-record strip: hydrated by hero.js from assets/track.json,
+          which is generated from real prediction data by
+          `scripts/issue_tools.py home-track`. No-JS fallback below. --}}
+    <div class="vs-track" data-vs-track data-src="{{asset "track.json"}}">
+      <div class="vs-track__head">
+        <span class="vs-track__label">Track record</span>
+        <a class="vs-track__more" href="/scorecard/">See the full record →</a>
+      </div>
+    </div>
+
   </div>
 </section>

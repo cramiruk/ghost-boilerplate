@@ -1,0 +1,36 @@
+{
+  "summary": "2 issues live · 4 backtests scored",
+  "note": "Every call is dated and public. Backtests are method calibration, scored in a separate lane.",
+  "scorecard_url": "/scorecard/",
+  "cards": [
+    {
+      "kind": "live",
+      "lane": "Live call",
+      "claim": "The carrier JV will not take control of AST SpaceMobile",
+      "confidence": 0.7,
+      "status": "open",
+      "horizon": "2027",
+      "regions": "[US]",
+      "href": "/coverage-where-the-towers-end/"
+    },
+    {
+      "kind": "live",
+      "lane": "Live call",
+      "claim": "Electrical-equipment scarcity rent persists",
+      "confidence": 0.78,
+      "status": "open",
+      "horizon": "2027",
+      "regions": "[US]",
+      "href": "/the-constraint-is-not-a-baton/"
+    },
+    {
+      "kind": "backtest",
+      "lane": "Backtest · hindsight-scored",
+      "claim": "The $17 Billion Tell",
+      "resolved": "2 / 2 resolved hit",
+      "brier": 0.13,
+      "status": "backtest",
+      "href": "/backtest-d2d-spectrum-17-billion-tell/"
+    }
+  ]
+}
