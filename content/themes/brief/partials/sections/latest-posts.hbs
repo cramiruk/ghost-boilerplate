@@ -1,12 +1,13 @@
 {{#get "posts" filter="{{filter}}" include="tags,authors,tiers" limit=@config.posts_per_page}}
   {{#if posts}}
-    <section class="px-5 sm:px-6 mb-16 overflow-hidden lg:overflow-visible" data-latest-posts id="latest">
-      <div class="max-w-container mx-auto">
+    <section class="px-5 sm:px-6 pt-12 mb-28 overflow-hidden lg:overflow-visible" data-latest-posts id="latest">
+      {{!-- Top hairline above the header, matching the track-record strip in the hero. --}}
+      <div class="max-w-container mx-auto border-t border-brd pt-8">
         <div class="flex flex-col lg:flex-row gap-8">
           <div class="flex-1 overflow-x-scroll">
             {{> topic-list}}
 
-            <h2 class="vs-feat-head" data-feed-header>{{#if heading}}{{heading}}{{else}}{{t "Latest issues"}}{{/if}}</h2>
+            <h2 class="vs-feat-head" data-feed-header>{{#if ../heading}}{{../heading}}{{else}}{{#if heading}}{{heading}}{{else}}{{t "Latest issues"}}{{/if}}{{/if}}</h2>
 
             {{> post-feed}}
 

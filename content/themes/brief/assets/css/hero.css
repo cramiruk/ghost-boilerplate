@@ -81,7 +81,7 @@
   --vs-accent:var(--color-brand);
   --vs-fg:var(--color-typography);
   font-family:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  font-size:10.5px;line-height:1.3;font-weight:300;letter-spacing:-0.005em;
+  font-size:15.75px;line-height:1.3;font-weight:300;letter-spacing:-0.005em;
   text-align:center;color:var(--vs-fg);margin-top:-6px;
 }
 /* Three-line stack: the rotating word drops to its own centered line under
