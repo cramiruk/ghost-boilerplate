@@ -6,7 +6,7 @@
    ============================================================ */
 
 /* Optional font import — or load via Ghost code injection (see README) */
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&display=swap');
 
 .vs-hero {
   /* Colors inherit Brief's light/dark scheme tokens (see main.css) */
@@ -90,6 +90,16 @@
    the fixed-width slot is centered under the line above it. */
 .vs-foot-kinetic .vs-rotate{display:block;margin:0 auto;text-align:center;}
 .vs-foot-kinetic .vs-rotate__word{text-align:center;}
+
+/* Section eyebrow that matches the track-record label above (uppercase,
+   wide tracking, faint). Used for the "Featured issues" feed header.
+   Self-contained (reads --color-typography directly) so it works outside
+   the .vs-hero scope where --vs-faint is defined. */
+.vs-feat-head{
+  font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  color:color-mix(in srgb, var(--color-typography), transparent 45%);
+  margin:0 0 16px;
+}
 
 .vs-sub{
   margin:38px 0 0;font-size:23px;line-height:1.5;color:var(--vs-muted);max-width:600px;

@@ -6,7 +6,7 @@
           <div class="flex-1 overflow-x-scroll">
             {{> topic-list}}
 
-            <h2 class="uppercase font-semibold text-sm mb-2" data-feed-header>{{t "Latest issues"}}</h2>
+            <h2 class="vs-feat-head" data-feed-header>{{#if heading}}{{heading}}{{else}}{{t "Latest issues"}}{{/if}}</h2>
 
             {{> post-feed}}
 
@@ -20,7 +20,7 @@
             {{/if}}
           </div>
 
-          {{> sidebar}}
+          {{#unless hide_sidebar}}{{> sidebar}}{{/unless}}
         </div>
       </div>
     </section>

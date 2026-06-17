@@ -41,7 +41,13 @@
       filter="featured:false"
     }}
   {{else}}
-    {{> sections/latest-posts}}
+    {{!-- Featured issues: posts tagged "issue" and marked featured, in the
+          feed layout, full-width (no subscribe sidebar). --}}
+    {{> sections/latest-posts
+      filter="tag:issue+featured:true"
+      heading="Featured issues"
+      hide_sidebar=true
+    }}
   {{/if}}
 {{/if}}
 
